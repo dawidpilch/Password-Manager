@@ -168,7 +168,8 @@ namespace DataBaseProject1
                 byte[] usernameSaltByte = Encoding.ASCII.GetBytes(usernameSalt);
 
                 //Inserting into DataBase
-                command = new SqlCommand("Insert into USERS (ID, USERNAME, PASSWORD, EMAIL, PHONENUMBER, DATE ,SALT) values ('" +
+                command = new SqlCommand
+                    ("Insert into USERS (ID, USERNAME, PASSWORD, EMAIL, PHONENUMBER, DATE, USERNAMESALT, PASSWORDSALT) values ('" +
                     
                     //ID
                     NewID + "', '" +
@@ -189,7 +190,7 @@ namespace DataBaseProject1
                     DateTime.UtcNow.ToString("yyyy-MM-dd") + "', '" +
 
                     //SALT
-                    passwordSalt + "')", conn);
+                    usernameSalt + "', '" + passwordSalt + "')", conn);
 
                 int rowsAffected = command.ExecuteNonQuery();
 

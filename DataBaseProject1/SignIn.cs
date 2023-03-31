@@ -35,38 +35,27 @@ namespace DataBaseProject1
 
         public void loginButton_Click_1(object sender, EventArgs e)
         {
-            //using (SqlConnection conn = new SqlConnection(@"Data Source=DESKTOP-JBI31J2;Initial Catalog=DataBaseProject1;Integrated Security=True;"))
-            //{
-            //    SqlDataAdapter da = new SqlDataAdapter
-            //        ("Select Count(*) From USERS where USERNAME='" + outsideLogin.Text + "' and PASSWORD ='"
-            //        + outsidePassword.Text + "'", conn);
+            using (SqlConnection conn = new SqlConnection(@"Data Source=DESKTOP-JBI31J2;Initial Catalog=DataBaseProject1;Integrated Security=True;"))
+            {
+                SqlDataAdapter da = new SqlDataAdapter
+                    ("Select Count(*) From USERS where USERNAME='" + outsideLogin.Text + "' and PASSWORD ='"
+                    + outsidePassword.Text + "'", conn);
 
-            //    DataTable dataTable = new DataTable();
-            //    da.Fill(dataTable);
+                DataTable dataTable = new DataTable();
+                da.Fill(dataTable);
 
-            //    if (dataTable.Rows[0][0].ToString() == "1")
-            //    {
-            //        this.Hide();
-            //        LoggedIn loggedIn = new LoggedIn();
-            //        loggedIn.Show();
-            //    }
+                if (dataTable.Rows[0][0].ToString() == "1")
+                {
+                    this.Hide();
+                    LoggedIn loggedIn = new LoggedIn();
+                    loggedIn.Show();
+                }
 
-            //    else
-            //    {
-            //        MessageBox.Show("Wrong username or password!");
-            //    }
-            //}
-            //focus.Focus();
-            //MessageBox.Show(UserIDGenerator.CreateUserID(8));
-            //MessageBox.Show(SecureData.HashPassword(outsideLogin.Text)); 
-
-
-
-            byte[] pwd = Encoding.ASCII.GetBytes(outsidePassword.Text);
-            byte[] salt = Encoding.ASCII.GetBytes(SecureData.CreateSalt(8));
-
-            
-            MessageBox.Show(SecureData.HashPassword(outsidePassword.Text, salt));
+                else
+                {
+                    MessageBox.Show("Wrong username or password!");
+                }
+            }
         }
 
         private void goToRegister_Click(object sender, EventArgs e)

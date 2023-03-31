@@ -108,7 +108,7 @@
             this.buttonRegister.Location = new System.Drawing.Point(220, 333);
             this.buttonRegister.Name = "buttonRegister";
             this.buttonRegister.Size = new System.Drawing.Size(75, 34);
-            this.buttonRegister.TabIndex = 4;
+            this.buttonRegister.TabIndex = 7;
             this.buttonRegister.Text = "Create";
             this.buttonRegister.UseVisualStyleBackColor = false;
             this.buttonRegister.Click += new System.EventHandler(this.buttonRegister_Click);
@@ -126,7 +126,7 @@
             this.goToLogin.Margin = new System.Windows.Forms.Padding(0);
             this.goToLogin.Name = "goToLogin";
             this.goToLogin.Size = new System.Drawing.Size(114, 34);
-            this.goToLogin.TabIndex = 5;
+            this.goToLogin.TabIndex = 6;
             this.goToLogin.Text = "Sign in instead";
             this.goToLogin.UseVisualStyleBackColor = false;
             this.goToLogin.Click += new System.EventHandler(this.goToLogin_Click);
@@ -149,7 +149,7 @@
             this.phoneRegister.Location = new System.Drawing.Point(96, 259);
             this.phoneRegister.Name = "phoneRegister";
             this.phoneRegister.Size = new System.Drawing.Size(197, 21);
-            this.phoneRegister.TabIndex = 16;
+            this.phoneRegister.TabIndex = 5;
             this.phoneRegister.Enter += new System.EventHandler(this.phoneRegister_Enter);
             this.phoneRegister.Leave += new System.EventHandler(this.phoneRegister_Leave);
             // 
@@ -159,7 +159,7 @@
             this.emailRegister.Location = new System.Drawing.Point(96, 202);
             this.emailRegister.Name = "emailRegister";
             this.emailRegister.Size = new System.Drawing.Size(197, 21);
-            this.emailRegister.TabIndex = 15;
+            this.emailRegister.TabIndex = 4;
             // 
             // phhone
             // 
