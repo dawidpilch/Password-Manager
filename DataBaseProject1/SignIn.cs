@@ -9,14 +9,16 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 
- // ____            _____            __          _ 
- //|  _ \          / ____|          / _|        | |
- //| |_) |   ___  | (___     __ _  | |_    ___  | |
- //|  _ <   / _ \  \___ \   / _` | |  _|  / _ \ | |
- //| |_) | |  __/  ____) | | (_| | | |   |  __/ |_|
- //|____/   \___| |_____/   \__,_| |_|    \___| (_)
-                                                 
-                                                 
+
+ // _____                 _             
+ //|_   _|   ___       __| |   ___    _ 
+ //  | |    / _ \     / _` |  / _ \  (_)
+ //  | |   | (_) |   | (_| | | (_) |  _ 
+ //  |_|    \___/     \__,_|  \___/  (_)
+                                      
+    // -> New Login Form based on Unique Usernames and Hashed Passwords
+
+
 
 namespace DataBaseProject1
 {
@@ -35,9 +37,6 @@ namespace DataBaseProject1
         {
             using (SqlConnection conn = new SqlConnection(@"Data Source=DESKTOP-JBI31J2;Initial Catalog=DataBaseProject1;Integrated Security=True;"))
             {
-
-
-
                 SqlDataAdapter da = new SqlDataAdapter
                     ("Select Count(*) From USERS where USERNAME='" + outsideUsername.Text + "' and PASSWORD ='"
                     + outsidePassword.Text + "'", conn);

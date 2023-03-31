@@ -12,6 +12,17 @@ using System.Security.Cryptography;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 
+ // _____                 _             
+ //|_   _|   ___       __| |   ___    _ 
+ //  | |    / _ \     / _` |  / _ \  (_)
+ //  | |   | (_) |   | (_| | | (_) |  _ 
+ //  |_|    \___/     \__,_|  \___/  (_)
+                                      
+    // -> New Unique Username System [X]
+    // -> Password Logic to accept only UTF-8 Characters
+
+
+
 namespace DataBaseProject1
 {
     public partial class Register : Form
@@ -20,11 +31,11 @@ namespace DataBaseProject1
         public static string NewID = "987654321";
 
         public static bool UsernameAccepted;
+        public static bool UsernameAvailable;
         public static bool PasswordAccepted;
         public static bool PhoneNumberAccepted;
         public static bool EmailAccepted;
         public static bool UniqueUsername;
-
 
         public Register()
         {
@@ -48,10 +59,11 @@ namespace DataBaseProject1
         private void buttonRegister_Click(object sender, EventArgs e)
         {
             //======= Username TextBox =======//
-            if (string.IsNullOrEmpty(usernameRegister.Text))
+            if (usernameRegister.Text.Length < 5)
             {
                 usernameRegister.BackColor = Color.FromArgb(192, 0, 0);
                 usernameRegister.ForeColor = Color.FromArgb(255, 255, 255);
+                usernameInfo.Visible = true;
                 UsernameAccepted = false;
             }
             
@@ -60,7 +72,7 @@ namespace DataBaseProject1
                 usernameRegister.BackColor = Color.FromArgb(192, 0, 0);
                 usernameRegister.ForeColor = Color.FromArgb(255, 255, 255);
                 usernameInfo.Visible = true;
-                EmailAccepted = false;
+                UsernameAccepted = false;
             }
 
             else
@@ -71,9 +83,38 @@ namespace DataBaseProject1
                 UsernameAccepted = true;
             }
 
+            //Checking if Username is not already taken
+            if (UsernameAccepted == true)
+            {
+                using (SqlConnection conn = new SqlConnection(@"Data Source=DESKTOP-JBI31J2;Initial Catalog=DataBaseProject1;Integrated Security=True;"))
+                {
+                    conn.Open();
+                    SqlCommand cmdUsernameCheck = new SqlCommand("Select Count(*) From USERS where USERNAME='" + usernameRegister.Text + "'", conn);
+                    string cmdUsernameResult = cmdUsernameCheck.ExecuteScalar().ToString();
+
+                    if (cmdUsernameResult == "0")
+                    {
+                        UniqueUsername = true;
+                        usernameInfoTaken.Visible = false;
+                        usernameRegister.BackColor = Color.FromArgb(255, 255, 255);
+                        usernameRegister.ForeColor = Color.FromArgb(0, 0, 0);
+                    }
+
+                    else
+                    {
+                        UniqueUsername = false;
+                        usernameInfoTaken.Visible = true;
+                        usernameRegister.BackColor = Color.FromArgb(192, 0, 0);
+                        usernameRegister.ForeColor = Color.FromArgb(255, 255, 255);
+                    }
+                    conn.Close();
+                    
+                }
+            }
+
 
             //======= Password TextBox =======//
-            if (string.IsNullOrEmpty(passwordRegister.Text))
+            if (passwordRegister.Text.Length < 8)
             {
                 passwordRegister.BackColor = Color.FromArgb(192, 0, 0);
                 passwordRegister.ForeColor = Color.FromArgb(255, 255, 255);
@@ -103,6 +144,7 @@ namespace DataBaseProject1
                 emailInfo.Visible = true;
                 EmailAccepted = false;
             }
+
             else
             {
                 emailRegister.BackColor = Color.FromArgb(255, 255, 255);
@@ -116,52 +158,14 @@ namespace DataBaseProject1
             PhoneNumberAccepted = IsDigitsOnly(phoneRegister.Text);
 
 
-
-
-            
-
             //Checking if all Required Fields are filled. If not, the Connection with a DB won't be established
             //and the data will not land in the DB.
-            if (UsernameAccepted == true && PasswordAccepted == true && EmailAccepted == true && PhoneNumberAccepted == true)
+            if (UsernameAccepted == true && UniqueUsername == true && PasswordAccepted == true && EmailAccepted == true && PhoneNumberAccepted == true)
             {
                 using (SqlConnection conn = new SqlConnection(@"Data Source=DESKTOP-JBI31J2;Initial Catalog=DataBaseProject1;Integrated Security=True;"))
                 {
                     conn.Open();
                     SqlCommand command = new SqlCommand();
-                    
-
-                    #region Old Scripts
-                    //SqlDataAdapter da = new SqlDataAdapter("Select Count(*) From USERS where ID ='" + NewID + "'", conn);
-
-                    //DataTable dataTable = new DataTable();
-                    //da.Fill(dataTable);
-
-                    //if (dataTable.Rows[0][0].ToString() == "1")
-                    //{
-                    //    MessageBox.Show("ID zajęte");
-                    //}
-
-                    //else
-                    //{
-                    //    MessageBox.Show("Dostępne");
-                    //}
-
-
-                    //SqlCommand cmdUser = new SqlCommand("Select Count(*) From USERS where ID = '" + NewID + "'", conn);
-
-                    //var cmdUserResult = cmdUser.ExecuteScalar();
-
-
-                    //if (cmdUserResult != null)
-                    //{
-                    //    MessageBox.Show("ID Niedostępne");
-                    //}
-
-                    //else
-                    //{
-                    //    MessageBox.Show("ID git");
-                    //}
-                    #endregion
 
                     SqlDataAdapter getLatestID = new SqlDataAdapter("SELECT MAX(ID) AS MaxID FROM [DataBaseProject1].[dbo].[USERS]", conn);
 
@@ -223,7 +227,7 @@ namespace DataBaseProject1
 
         private void emailInfo_Click(object sender, EventArgs e)
         {
-            usernameInfo.Visible = false;
+            
         }
 
         private void passwordRegister_Enter(object sender, EventArgs e)

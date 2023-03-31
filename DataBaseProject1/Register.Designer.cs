@@ -50,6 +50,7 @@
             this.usernameInformation = new System.Windows.Forms.Label();
             this.labelfocus = new System.Windows.Forms.Label();
             this.emailInfo = new System.Windows.Forms.Label();
+            this.usernameInfoTaken = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -230,9 +231,9 @@
             this.usernameInfo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.usernameInfo.Location = new System.Drawing.Point(296, 82);
             this.usernameInfo.Name = "usernameInfo";
-            this.usernameInfo.Size = new System.Drawing.Size(126, 28);
+            this.usernameInfo.Size = new System.Drawing.Size(176, 28);
             this.usernameInfo.TabIndex = 20;
-            this.usernameInfo.Text = "Only letters and numbers\r\nare allowed.";
+            this.usernameInfo.Text = "Only letters and numbers\r\nare allowed. Minimum 5 characters!";
             this.usernameInfo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.usernameInfo.Visible = false;
             this.usernameInfo.Click += new System.EventHandler(this.emailInfo_Click);
@@ -300,9 +301,9 @@
             this.usernameInformation.ForeColor = System.Drawing.Color.Gold;
             this.usernameInformation.Location = new System.Drawing.Point(296, 82);
             this.usernameInformation.Name = "usernameInformation";
-            this.usernameInformation.Size = new System.Drawing.Size(126, 28);
+            this.usernameInformation.Size = new System.Drawing.Size(176, 28);
             this.usernameInformation.TabIndex = 24;
-            this.usernameInformation.Text = "Only letters and numbers\r\nare allowed.";
+            this.usernameInformation.Text = "Only letters and numbers\r\nare allowed. Minimum 5 characters!";
             this.usernameInformation.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.usernameInformation.Visible = false;
             // 
@@ -323,13 +324,29 @@
             this.emailInfo.Cursor = System.Windows.Forms.Cursors.Hand;
             this.emailInfo.Font = new System.Drawing.Font("Microsoft Tai Le", 7F, System.Drawing.FontStyle.Bold);
             this.emailInfo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.emailInfo.Location = new System.Drawing.Point(297, 198);
+            this.emailInfo.Location = new System.Drawing.Point(297, 192);
             this.emailInfo.Name = "emailInfo";
-            this.emailInfo.Size = new System.Drawing.Size(76, 15);
+            this.emailInfo.Size = new System.Drawing.Size(79, 41);
             this.emailInfo.TabIndex = 26;
-            this.emailInfo.Text = "Invalid E-Mail.";
+            this.emailInfo.Text = "\r\nInvalid E-Mail! \r\n ";
             this.emailInfo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.emailInfo.Visible = false;
+            // 
+            // usernameInfoTaken
+            // 
+            this.usernameInfoTaken.AutoSize = true;
+            this.usernameInfoTaken.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.usernameInfoTaken.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.usernameInfoTaken.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.usernameInfoTaken.Font = new System.Drawing.Font("Microsoft Tai Le", 7F, System.Drawing.FontStyle.Bold);
+            this.usernameInfoTaken.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.usernameInfoTaken.Location = new System.Drawing.Point(296, 75);
+            this.usernameInfoTaken.Name = "usernameInfoTaken";
+            this.usernameInfoTaken.Size = new System.Drawing.Size(128, 41);
+            this.usernameInfoTaken.TabIndex = 27;
+            this.usernameInfoTaken.Text = "\r\nUsername already taken!  \r\n \r\n";
+            this.usernameInfoTaken.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.usernameInfoTaken.Visible = false;
             // 
             // Register
             // 
@@ -340,6 +357,7 @@
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.CancelButton = this.goToLogin;
             this.ClientSize = new System.Drawing.Size(639, 398);
+            this.Controls.Add(this.usernameInfoTaken);
             this.Controls.Add(this.emailInfo);
             this.Controls.Add(this.phoneInfo);
             this.Controls.Add(this.label2);
@@ -398,5 +416,6 @@
         private System.Windows.Forms.Label usernameInformation;
         private System.Windows.Forms.Label labelfocus;
         private System.Windows.Forms.Label emailInfo;
+        private System.Windows.Forms.Label usernameInfoTaken;
     }
 }
