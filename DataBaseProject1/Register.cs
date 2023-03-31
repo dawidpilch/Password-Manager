@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Security.Cryptography;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 
 namespace DataBaseProject1
@@ -29,18 +30,13 @@ namespace DataBaseProject1
             InitializeComponent();
             this.MaximizedBounds = Screen.FromHandle(this.Handle).WorkingArea;
             labelfocus.Select();
-
-
-
-            
         }
 
         private void goToLogin_Click(object sender, EventArgs e)
         {
             this.Hide();
-            Form1 form = new Form1();
+            SignIn form = new SignIn();
             form.Show();
-            
         }
 
         private void Register_Load(object sender, EventArgs e)
@@ -106,16 +102,16 @@ namespace DataBaseProject1
             }
 
 
+            //======= Phone Number TextBox =======//
+            PhoneNumberAccepted = IsDigitsOnly(phoneRegister.Text);
 
-            
-            
 
 
 
             SqlCommand command = new SqlCommand();
             //Checking if all Required Fields are filled. If not, the Connection with a DB won't be established
             //and the data will not land in the DB.
-            if (UsernameAccepted == true && PasswordAccepted == true && EmailAccepted == true)
+            if (UsernameAccepted == true && PasswordAccepted == true && EmailAccepted == true && PhoneNumberAccepted == true)
             {
                 SqlConnection conn = new SqlConnection(@"Data Source=DESKTOP-JBI31J2;Initial Catalog=DataBaseProject1;Integrated Security=True;");
                 conn.Open();
@@ -165,51 +161,42 @@ namespace DataBaseProject1
                 //Todays Date for SQL
                 //MessageBox.Show(DateTime.UtcNow.ToString("dd-MM-yyyy") + NewID);
 
-                //Hashing the password and login
-                
+                string passwordSalt = SecureData.CreateSalt(8);
+                byte[] passwordSaltByte = Encoding.ASCII.GetBytes(passwordSalt);
 
-                
+                string usernameSalt = SecureData.CreateSalt(8);
+                byte[] usernameSaltByte = Encoding.ASCII.GetBytes(usernameSalt);
 
-                
+                //Inserting into DataBase
+                command = new SqlCommand("Insert into USERS (ID, USERNAME, PASSWORD, EMAIL, PHONENUMBER, DATE ,SALT) values ('" +
+                    
+                    //ID
+                    NewID + "', '" +
 
+                    //USERNAME
+                    SecureData.HashPassword(usernameRegister.Text, passwordSaltByte) + "', '" +
 
+                    //PASSWORD
+                    SecureData.HashPassword(passwordRegister.Text, usernameSaltByte) + "', '" +
 
+                    //EMAIL
+                    emailRegister.Text + "', '" +
 
+                    //PHONENUMBER
+                    phoneRegister.Text + "', '" +
 
+                    //REGISTER DATE
+                    DateTime.UtcNow.ToString("yyyy-MM-dd") + "', '" +
 
+                    //SALT
+                    passwordSalt + "')", conn);
 
+                int rowsAffected = command.ExecuteNonQuery();
 
-
-
-
-
-
-
-                //command = new SqlCommand("Insert into USERS (ID, USERNAME, PASSWORD, EMAIL) values ('" +
-                //    //ID
-                //    NewID + "', '" +
-
-                //    //USERNAME
-                //    usernameRegister.Text + "', '" +
-
-                //    //PASSWORD
-                //    passwordRegister.Text + "', '" +
-
-                //    //EMAIL
-                //    emailRegister.Text + "', '" +
-
-                //    //PHONENUMBER
-                //    phoneRegister.Text +"', '" +
-
-                //    //REGISTER DATE
-                //    + "')", conn);
-
-                //int rowsAffected = command.ExecuteNonQuery();
-
-                //if (rowsAffected == 1)
-                //{
-                //    MessageBox.Show("Registered Successfully!");
-                //}
+                if (rowsAffected == 1)
+                {
+                    MessageBox.Show("Registered Successfully!");
+                }
                 conn.Close();
             }
 
@@ -253,6 +240,18 @@ namespace DataBaseProject1
         private void usernameRegister_Leave(object sender, EventArgs e)
         {
             usernameInformation.Visible = false;
+        }
+
+        bool IsDigitsOnly(string str)
+        {
+            foreach (char c in str)
+            {
+                if (c < '0' || c > '9')
+                {
+                    return false;
+                }
+            }
+            return true;
         }
     }
 }

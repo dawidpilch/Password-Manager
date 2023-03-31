@@ -59,15 +59,5 @@ namespace DataBaseProject1.Properties {
                 resourceCulture = value;
             }
         }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap jeremy_hynes_L6_MQVHz3Eg_unsplash {
-            get {
-                object obj = ResourceManager.GetObject("jeremy-hynes-L6_MQVHz3Eg-unsplash", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
     }
 }
