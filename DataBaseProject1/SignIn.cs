@@ -29,16 +29,17 @@ namespace DataBaseProject1
             hidePassword.Visible = false;
             outsidePassword.UseSystemPasswordChar = true;
             focus.Focus();
-
-            
         }
 
         public void loginButton_Click_1(object sender, EventArgs e)
         {
             using (SqlConnection conn = new SqlConnection(@"Data Source=DESKTOP-JBI31J2;Initial Catalog=DataBaseProject1;Integrated Security=True;"))
             {
+
+
+
                 SqlDataAdapter da = new SqlDataAdapter
-                    ("Select Count(*) From USERS where USERNAME='" + outsideLogin.Text + "' and PASSWORD ='"
+                    ("Select Count(*) From USERS where USERNAME='" + outsideUsername.Text + "' and PASSWORD ='"
                     + outsidePassword.Text + "'", conn);
 
                 DataTable dataTable = new DataTable();

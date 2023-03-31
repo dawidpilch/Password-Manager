@@ -23,6 +23,7 @@ namespace DataBaseProject1
         public static bool PasswordAccepted;
         public static bool PhoneNumberAccepted;
         public static bool EmailAccepted;
+        public static bool UniqueUsername;
 
 
         public Register()
@@ -53,7 +54,7 @@ namespace DataBaseProject1
                 usernameRegister.ForeColor = Color.FromArgb(255, 255, 255);
                 UsernameAccepted = false;
             }
-            //usernameRegister.Text.Contains('x')
+            
             else if (!usernameRegister.Text.All(Char.IsLetterOrDigit))
             {
                 usernameRegister.BackColor = Color.FromArgb(192, 0, 0);
@@ -66,6 +67,7 @@ namespace DataBaseProject1
             {
                 usernameRegister.BackColor = Color.FromArgb(255, 255, 255);
                 usernameRegister.ForeColor = Color.FromArgb(0, 0, 0);
+                usernameInfo.Visible = false;
                 UsernameAccepted = true;
             }
 
@@ -94,10 +96,18 @@ namespace DataBaseProject1
                 EmailAccepted = false;
             }
 
+            else if (!emailRegister.Text.Contains("@"))
+            {
+                emailRegister.BackColor = Color.FromArgb(192, 0, 0);
+                emailRegister.ForeColor = Color.FromArgb(255, 255, 255);
+                emailInfo.Visible = true;
+                EmailAccepted = false;
+            }
             else
             {
                 emailRegister.BackColor = Color.FromArgb(255, 255, 255);
                 emailRegister.ForeColor = Color.FromArgb(0, 0, 0);
+                emailInfo.Visible = false;
                 EmailAccepted = true;
             }
 
@@ -108,104 +118,107 @@ namespace DataBaseProject1
 
 
 
-            SqlCommand command = new SqlCommand();
+            
+
             //Checking if all Required Fields are filled. If not, the Connection with a DB won't be established
             //and the data will not land in the DB.
             if (UsernameAccepted == true && PasswordAccepted == true && EmailAccepted == true && PhoneNumberAccepted == true)
             {
-                SqlConnection conn = new SqlConnection(@"Data Source=DESKTOP-JBI31J2;Initial Catalog=DataBaseProject1;Integrated Security=True;");
-                conn.Open();
-
-
-                #region Old Scripts
-                //SqlDataAdapter da = new SqlDataAdapter("Select Count(*) From USERS where ID ='" + NewID + "'", conn);
-
-                //DataTable dataTable = new DataTable();
-                //da.Fill(dataTable);
-
-                //if (dataTable.Rows[0][0].ToString() == "1")
-                //{
-                //    MessageBox.Show("ID zajęte");
-                //}
-
-                //else
-                //{
-                //    MessageBox.Show("Dostępne");
-                //}
-
-
-                //SqlCommand cmdUser = new SqlCommand("Select Count(*) From USERS where ID = '" + NewID + "'", conn);
-
-                //var cmdUserResult = cmdUser.ExecuteScalar();
-
-
-                //if (cmdUserResult != null)
-                //{
-                //    MessageBox.Show("ID Niedostępne");
-                //}
-
-                //else
-                //{
-                //    MessageBox.Show("ID git");
-                //}
-                #endregion
-
-                SqlDataAdapter getLatestID = new SqlDataAdapter("SELECT MAX(ID) AS MaxID FROM [DataBaseProject1].[dbo].[USERS]", conn);
-
-                DataTable dataTable = new DataTable();
-                getLatestID.Fill(dataTable);                
-                string tostring = dataTable.Rows[0][0].ToString();
-                int latestID = int.Parse(tostring);
-                int NewID = latestID + 1;
-
-                //Todays Date for SQL
-                //MessageBox.Show(DateTime.UtcNow.ToString("dd-MM-yyyy") + NewID);
-
-                string passwordSalt = SecureData.CreateSalt(8);
-                byte[] passwordSaltByte = Encoding.ASCII.GetBytes(passwordSalt);
-
-                string usernameSalt = SecureData.CreateSalt(8);
-                byte[] usernameSaltByte = Encoding.ASCII.GetBytes(usernameSalt);
-
-                //Inserting into DataBase
-                command = new SqlCommand
-                    ("Insert into USERS (ID, USERNAME, PASSWORD, EMAIL, PHONENUMBER, DATE, USERNAMESALT, PASSWORDSALT) values ('" +
-                    
-                    //ID
-                    NewID + "', '" +
-
-                    //USERNAME
-                    SecureData.HashPassword(usernameRegister.Text, passwordSaltByte) + "', '" +
-
-                    //PASSWORD
-                    SecureData.HashPassword(passwordRegister.Text, usernameSaltByte) + "', '" +
-
-                    //EMAIL
-                    emailRegister.Text + "', '" +
-
-                    //PHONENUMBER
-                    phoneRegister.Text + "', '" +
-
-                    //REGISTER DATE
-                    DateTime.UtcNow.ToString("yyyy-MM-dd") + "', '" +
-
-                    //SALT
-                    usernameSalt + "', '" + passwordSalt + "')", conn);
-
-                int rowsAffected = command.ExecuteNonQuery();
-
-                if (rowsAffected == 1)
+                using (SqlConnection conn = new SqlConnection(@"Data Source=DESKTOP-JBI31J2;Initial Catalog=DataBaseProject1;Integrated Security=True;"))
                 {
-                    MessageBox.Show("Registered Successfully!");
+                    conn.Open();
+                    SqlCommand command = new SqlCommand();
+                    
+
+                    #region Old Scripts
+                    //SqlDataAdapter da = new SqlDataAdapter("Select Count(*) From USERS where ID ='" + NewID + "'", conn);
+
+                    //DataTable dataTable = new DataTable();
+                    //da.Fill(dataTable);
+
+                    //if (dataTable.Rows[0][0].ToString() == "1")
+                    //{
+                    //    MessageBox.Show("ID zajęte");
+                    //}
+
+                    //else
+                    //{
+                    //    MessageBox.Show("Dostępne");
+                    //}
+
+
+                    //SqlCommand cmdUser = new SqlCommand("Select Count(*) From USERS where ID = '" + NewID + "'", conn);
+
+                    //var cmdUserResult = cmdUser.ExecuteScalar();
+
+
+                    //if (cmdUserResult != null)
+                    //{
+                    //    MessageBox.Show("ID Niedostępne");
+                    //}
+
+                    //else
+                    //{
+                    //    MessageBox.Show("ID git");
+                    //}
+                    #endregion
+
+                    SqlDataAdapter getLatestID = new SqlDataAdapter("SELECT MAX(ID) AS MaxID FROM [DataBaseProject1].[dbo].[USERS]", conn);
+
+                    DataTable dataTable = new DataTable();
+                    getLatestID.Fill(dataTable);
+                    string tostring = dataTable.Rows[0][0].ToString();
+                    int latestID = int.Parse(tostring);
+                    int NewID = latestID + 1;
+
+
+                    //Salts for Username and Password
+                    string passwordSalt = SecureData.CreateSalt(8);
+                    byte[] passwordSaltByte = Encoding.ASCII.GetBytes(passwordSalt);
+
+                    //string usernameSalt = SecureData.CreateSalt(8);
+                    //byte[] usernameSaltByte = Encoding.ASCII.GetBytes(usernameSalt);
+
+
+                    //Inserting into DataBase
+                    command = new SqlCommand
+                        ("Insert into USERS (ID, USERNAME, PASSWORD, EMAIL, PHONENUMBER, DATE, PASSWORDSALT) values ('" +
+
+                        //ID
+                        NewID + "', '" +
+
+                        //USERNAME
+                        usernameRegister.Text + "', '" +
+
+                        //PASSWORD
+                        SecureData.HashPassword(passwordRegister.Text, passwordSaltByte) + "', '" +
+
+                        //EMAIL
+                        emailRegister.Text + "', '" +
+
+                        //PHONENUMBER
+                        phoneRegister.Text + "', '" +
+
+                        //REGISTER DATE
+                        DateTime.UtcNow.ToString("yyyy-MM-dd") + "', '" +
+
+                        //SALT
+                        passwordSalt + "')", conn);
+
+                    int rowsAffected = command.ExecuteNonQuery();
+
+                    if (rowsAffected == 1)
+                    {
+                        MessageBox.Show("Registered Successfully!");
+                    }
+                    conn.Close();
                 }
-                conn.Close();
             }
 
             else
             {
                 MessageBox.Show("Missing the Required Data!");
             }
-            
         }
 
         private void emailInfo_Click(object sender, EventArgs e)

@@ -30,7 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SignIn));
             this.loginButton = new System.Windows.Forms.Button();
-            this.outsideLogin = new System.Windows.Forms.TextBox();
+            this.outsideUsername = new System.Windows.Forms.TextBox();
             this.outsidePassword = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.goToRegister = new System.Windows.Forms.Button();
@@ -60,12 +60,12 @@
             this.loginButton.UseVisualStyleBackColor = false;
             this.loginButton.Click += new System.EventHandler(this.loginButton_Click_1);
             // 
-            // outsideLogin
+            // outsideUsername
             // 
-            this.outsideLogin.Location = new System.Drawing.Point(88, 165);
-            this.outsideLogin.Name = "outsideLogin";
-            this.outsideLogin.Size = new System.Drawing.Size(218, 20);
-            this.outsideLogin.TabIndex = 1;
+            this.outsideUsername.Location = new System.Drawing.Point(88, 165);
+            this.outsideUsername.Name = "outsideUsername";
+            this.outsideUsername.Size = new System.Drawing.Size(218, 20);
+            this.outsideUsername.TabIndex = 1;
             // 
             // outsidePassword
             // 
@@ -184,7 +184,7 @@
             this.Controls.Add(this.goToRegister);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.outsidePassword);
-            this.Controls.Add(this.outsideLogin);
+            this.Controls.Add(this.outsideUsername);
             this.Controls.Add(this.loginButton);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.focus);
@@ -203,7 +203,7 @@
         #endregion
 
         private System.Windows.Forms.Button loginButton;
-        private System.Windows.Forms.TextBox outsideLogin;
+        private System.Windows.Forms.TextBox outsideUsername;
         private System.Windows.Forms.TextBox outsidePassword;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button goToRegister;

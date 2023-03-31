@@ -49,6 +49,7 @@
             this.phoneInfo = new System.Windows.Forms.Label();
             this.usernameInformation = new System.Windows.Forms.Label();
             this.labelfocus = new System.Windows.Forms.Label();
+            this.emailInfo = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -227,7 +228,7 @@
             this.usernameInfo.Cursor = System.Windows.Forms.Cursors.Hand;
             this.usernameInfo.Font = new System.Drawing.Font("Microsoft Tai Le", 7F, System.Drawing.FontStyle.Bold);
             this.usernameInfo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.usernameInfo.Location = new System.Drawing.Point(297, 83);
+            this.usernameInfo.Location = new System.Drawing.Point(296, 82);
             this.usernameInfo.Name = "usernameInfo";
             this.usernameInfo.Size = new System.Drawing.Size(126, 28);
             this.usernameInfo.TabIndex = 20;
@@ -297,7 +298,7 @@
             this.usernameInformation.Cursor = System.Windows.Forms.Cursors.Hand;
             this.usernameInformation.Font = new System.Drawing.Font("Microsoft Tai Le", 7F, System.Drawing.FontStyle.Bold);
             this.usernameInformation.ForeColor = System.Drawing.Color.Gold;
-            this.usernameInformation.Location = new System.Drawing.Point(297, 83);
+            this.usernameInformation.Location = new System.Drawing.Point(296, 82);
             this.usernameInformation.Name = "usernameInformation";
             this.usernameInformation.Size = new System.Drawing.Size(126, 28);
             this.usernameInformation.TabIndex = 24;
@@ -314,6 +315,22 @@
             this.labelfocus.TabIndex = 25;
             this.labelfocus.Text = "labelfocus";
             // 
+            // emailInfo
+            // 
+            this.emailInfo.AutoSize = true;
+            this.emailInfo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.emailInfo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.emailInfo.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.emailInfo.Font = new System.Drawing.Font("Microsoft Tai Le", 7F, System.Drawing.FontStyle.Bold);
+            this.emailInfo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.emailInfo.Location = new System.Drawing.Point(297, 198);
+            this.emailInfo.Name = "emailInfo";
+            this.emailInfo.Size = new System.Drawing.Size(76, 15);
+            this.emailInfo.TabIndex = 26;
+            this.emailInfo.Text = "Invalid E-Mail.";
+            this.emailInfo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.emailInfo.Visible = false;
+            // 
             // Register
             // 
             this.AcceptButton = this.buttonRegister;
@@ -323,6 +340,7 @@
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.CancelButton = this.goToLogin;
             this.ClientSize = new System.Drawing.Size(639, 398);
+            this.Controls.Add(this.emailInfo);
             this.Controls.Add(this.phoneInfo);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.passwordInfo);
@@ -379,5 +397,6 @@
         private System.Windows.Forms.Label phoneInfo;
         private System.Windows.Forms.Label usernameInformation;
         private System.Windows.Forms.Label labelfocus;
+        private System.Windows.Forms.Label emailInfo;
     }
 }
