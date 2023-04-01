@@ -217,7 +217,7 @@
             this.passwordInfo.Name = "passwordInfo";
             this.passwordInfo.Size = new System.Drawing.Size(226, 26);
             this.passwordInfo.TabIndex = 21;
-            this.passwordInfo.Text = "Use 8 or more characters with a mix of letters, \r\nnumbers and symbols";
+            this.passwordInfo.Text = "Use 8 or more characters with a mix of letters, \r\nnumbers and symbols.";
             this.passwordInfo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // phoneInfo

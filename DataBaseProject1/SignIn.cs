@@ -15,7 +15,6 @@ using System.Data.SqlClient;
  //  | |    / _ \     / _` |  / _ \  (_)
  //  | |   | (_) |   | (_| | | (_) |  _ 
  //  |_|    \___/     \__,_|  \___/  (_)
-                                      
 
 
 
@@ -48,6 +47,10 @@ namespace DataBaseProject1
 
                     if (cmdDoesUserExistResult != "0")
                     {
+                        usernameInfo.Visible = false;
+                        outsideUsername.BackColor = Color.FromArgb(255, 255, 255);
+                        outsideUsername.ForeColor = Color.FromArgb(0, 0, 0);
+
                         //If User Exists, find their salt
                         SqlCommand cmdGetUsersSalt = new SqlCommand
                             ("SELECT [PASSWORDSALT] FROM [DataBaseProject1].[dbo].[USERS] WHERE [USERNAME] = '"
@@ -68,21 +71,35 @@ namespace DataBaseProject1
 
                         if (cmdComparePasswordsResult == "1")
                         {
+                            passwordInfo.Visible = false;
                             MessageBox.Show("Hello " + outsideUsername.Text + "! \n" + passwordCheck);
                         }
                     }
 
-                    else
+                    else 
                     {
-                        MessageBox.Show("Wrong username or password!");
+                        usernameInfo.Visible = true;
+                        outsideUsername.BackColor = Color.FromArgb(192, 0, 0);
+                        outsideUsername.ForeColor = Color.FromArgb(255, 255, 255);
                     }
+
+                    
                     conn.Close();
                 }
             }
 
-            else
+            if (string.IsNullOrEmpty(outsideUsername.Text))
             {
-                MessageBox.Show("Enter Username");
+                usernameInfo.Visible = true;
+                outsideUsername.BackColor = Color.FromArgb(192, 0, 0);
+                outsideUsername.ForeColor = Color.FromArgb(255, 255, 255);
+            }
+
+            if (string.IsNullOrEmpty(outsidePassword.Text))
+            {
+                passwordInfo.Visible = true;
+                outsidePassword.BackColor = Color.FromArgb(192, 0, 0);
+                outsidePassword.ForeColor = Color.FromArgb(255, 255, 255);
             }
         }
 
