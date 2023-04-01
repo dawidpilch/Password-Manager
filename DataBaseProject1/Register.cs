@@ -58,12 +58,14 @@ namespace DataBaseProject1
         
         private void buttonRegister_Click(object sender, EventArgs e)
         {
+            usernameInfo.Text = "You can use letters and numbers.\r\n";
             //======= Username TextBox =======//
-            if (usernameRegister.Text.Length < 5)
+            if (usernameRegister.Text.Length < 6 || usernameRegister.Text.Length > 30)
             {
                 usernameRegister.BackColor = Color.FromArgb(192, 0, 0);
                 usernameRegister.ForeColor = Color.FromArgb(255, 255, 255);
-                usernameInfo.Visible = true;
+                usernameInfo.Text = "Your Username must be between 6 and 30 \r\ncharacters long.\r\n";
+                usernameInfo.ForeColor = Color.FromArgb(192, 0, 0);
                 UsernameAccepted = false;
             }
             
@@ -71,7 +73,8 @@ namespace DataBaseProject1
             {
                 usernameRegister.BackColor = Color.FromArgb(192, 0, 0);
                 usernameRegister.ForeColor = Color.FromArgb(255, 255, 255);
-                usernameInfo.Visible = true;
+                usernameInfo.Text = "Only letters and numbers are allowed!\r\n";
+                usernameInfo.ForeColor = Color.FromArgb(192, 0, 0);
                 UsernameAccepted = false;
             }
 
@@ -79,8 +82,9 @@ namespace DataBaseProject1
             {
                 usernameRegister.BackColor = Color.FromArgb(255, 255, 255);
                 usernameRegister.ForeColor = Color.FromArgb(0, 0, 0);
-                usernameInfo.Visible = false;
                 UsernameAccepted = true;
+                usernameInfo.Text = "You can use letters and numbers.\r\n";
+                usernameInfo.ForeColor = Color.DarkGray;
             }
 
             //Checking if Username is not already taken
@@ -89,13 +93,14 @@ namespace DataBaseProject1
                 using (SqlConnection conn = new SqlConnection(@"Data Source=DESKTOP-JBI31J2;Initial Catalog=DataBaseProject1;Integrated Security=True;"))
                 {
                     conn.Open();
-                    SqlCommand cmdUsernameCheck = new SqlCommand("Select Count(*) From USERS where USERNAME='" + usernameRegister.Text + "'", conn);
+                    SqlCommand cmdUsernameCheck = new SqlCommand("Select Count(*) From USERS where USERNAME='" + usernameRegister.Text + "' COLLATE SQL_Latin1_General_CP1_CS_AS", conn);
                     string cmdUsernameResult = cmdUsernameCheck.ExecuteScalar().ToString();
 
                     if (cmdUsernameResult == "0")
                     {
                         UniqueUsername = true;
-                        usernameInfoTaken.Visible = false;
+                        usernameInfo.Text = "You can use letters and numbers.\r\n";
+                        usernameInfo.ForeColor = Color.DarkGray;
                         usernameRegister.BackColor = Color.FromArgb(255, 255, 255);
                         usernameRegister.ForeColor = Color.FromArgb(0, 0, 0);
                     }
@@ -103,12 +108,12 @@ namespace DataBaseProject1
                     else
                     {
                         UniqueUsername = false;
-                        usernameInfoTaken.Visible = true;
+                        usernameInfo.Text = "Username already taken!\r\n";
+                        usernameInfo.ForeColor = Color.FromArgb(192, 0, 0);
                         usernameRegister.BackColor = Color.FromArgb(192, 0, 0);
                         usernameRegister.ForeColor = Color.FromArgb(255, 255, 255);
                     }
                     conn.Close();
-                    
                 }
             }
 
@@ -118,14 +123,51 @@ namespace DataBaseProject1
             {
                 passwordRegister.BackColor = Color.FromArgb(192, 0, 0);
                 passwordRegister.ForeColor = Color.FromArgb(255, 255, 255);
+                passwordRegisterConfirmation.BackColor = Color.FromArgb(255, 255, 255);
+                passwordRegisterConfirmation.ForeColor = Color.FromArgb(0, 0, 0);
+                passwordInfo.ForeColor = Color.FromArgb(192, 0, 0);
+                passwordInfo.Text = "Use 8 or more characters with a mix of letters, \r\nnumbers and symbols";
                 PasswordAccepted = false;
+                passwordInfo.Visible = true;
             }
 
             else
             {
                 passwordRegister.BackColor = Color.FromArgb(255, 255, 255);
-                passwordRegister.ForeColor = Color.FromArgb(0, 0, 0); 
+                passwordRegister.ForeColor = Color.FromArgb(0, 0, 0);
+                passwordRegisterConfirmation.BackColor = Color.FromArgb(255, 255, 255);
+                passwordRegisterConfirmation.ForeColor = Color.FromArgb(0, 0, 0);
+                passwordInfo.ForeColor = Color.DarkGray;
                 PasswordAccepted = true;
+                passwordInfo.Visible = true;
+            }
+
+            if (PasswordAccepted == true)
+            {
+                bool passwordConfirmed = passwordRegister.Text.Equals(passwordRegisterConfirmation.Text);
+
+                if (string.IsNullOrEmpty(passwordRegisterConfirmation.Text))
+                {
+                    passwordRegisterConfirmation.BackColor = Color.FromArgb(192, 0, 0);
+                    passwordRegisterConfirmation.ForeColor = Color.FromArgb(255, 255, 255);
+                    passwordInfo.ForeColor = Color.FromArgb(192, 0, 0);
+                    passwordInfo.Text = "Confirm your password.";
+                }
+
+                else if (passwordConfirmed == true)
+                {
+                    passwordRegisterConfirmation.BackColor = Color.FromArgb(255, 255, 255);
+                    passwordRegisterConfirmation.ForeColor = Color.FromArgb(0, 0, 0);
+                    passwordInfo.Visible = false;
+                }
+
+                else
+                {
+                    passwordRegisterConfirmation.BackColor = Color.FromArgb(192, 0, 0);
+                    passwordRegisterConfirmation.ForeColor = Color.FromArgb(255, 255, 255);
+                    passwordInfo.ForeColor = Color.FromArgb(192, 0, 0);
+                    passwordInfo.Text = "Those passwords didn't match. Try again.";
+                }
             }
 
 
@@ -134,6 +176,7 @@ namespace DataBaseProject1
             {
                 emailRegister.BackColor = Color.FromArgb(192, 0, 0);
                 emailRegister.ForeColor = Color.FromArgb(255, 255, 255);
+                emailInfo.Visible = true;
                 EmailAccepted = false;
             }
 
@@ -156,6 +199,20 @@ namespace DataBaseProject1
 
             //======= Phone Number TextBox =======//
             PhoneNumberAccepted = IsDigitsOnly(phoneRegister.Text);
+
+            if (PhoneNumberAccepted == false)
+            {
+                phoneRegister.BackColor = Color.FromArgb(192, 0, 0);
+                phoneRegister.ForeColor = Color.FromArgb(255, 255, 255);
+                phoneInfo.Visible = true;
+            }
+
+            else
+            {
+                phoneRegister.BackColor = Color.FromArgb(255, 255, 255);
+                phoneRegister.ForeColor = Color.FromArgb(0, 0, 0);
+                phoneInfo.Visible = false;
+            }
 
 
             //Checking if all Required Fields are filled. If not, the Connection with a DB won't be established
@@ -225,41 +282,6 @@ namespace DataBaseProject1
             }
         }
 
-        private void emailInfo_Click(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void passwordRegister_Enter(object sender, EventArgs e)
-        {
-            passwordInfo.Visible = true;
-        }
-
-        private void passwordRegister_Leave(object sender, EventArgs e)
-        {
-            passwordInfo.Visible = false;
-        }
-
-        private void phoneRegister_Enter(object sender, EventArgs e)
-        {
-            phoneInfo.Visible = true;
-        }
-
-        private void phoneRegister_Leave(object sender, EventArgs e)
-        {
-            phoneInfo.Visible = false;
-        }
-
-        private void usernameRegister_Enter(object sender, EventArgs e)
-        {
-            usernameInformation.Visible = true;
-        }
-
-        private void usernameRegister_Leave(object sender, EventArgs e)
-        {
-            usernameInformation.Visible = false;
-        }
-
         bool IsDigitsOnly(string str)
         {
             foreach (char c in str)
@@ -270,6 +292,22 @@ namespace DataBaseProject1
                 }
             }
             return true;
+        }
+
+        private void showPassword_Click(object sender, EventArgs e)
+        {
+            showPassword.Visible = false;
+            hidePassword.Visible = true;
+            passwordRegister.UseSystemPasswordChar = false;
+            passwordRegisterConfirmation.UseSystemPasswordChar = false;
+        }
+
+        private void hidePassword_Click(object sender, EventArgs e)
+        {
+            showPassword.Visible = true;
+            hidePassword.Visible = false;
+            passwordRegister.UseSystemPasswordChar = true;
+            passwordRegisterConfirmation.UseSystemPasswordChar = true;
         }
     }
 }

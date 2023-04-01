@@ -62,16 +62,18 @@
             // 
             // outsideUsername
             // 
+            this.outsideUsername.Font = new System.Drawing.Font("Microsoft Tai Le", 8.25F);
             this.outsideUsername.Location = new System.Drawing.Point(88, 165);
             this.outsideUsername.Name = "outsideUsername";
-            this.outsideUsername.Size = new System.Drawing.Size(218, 20);
+            this.outsideUsername.Size = new System.Drawing.Size(218, 21);
             this.outsideUsername.TabIndex = 1;
             // 
             // outsidePassword
             // 
+            this.outsidePassword.Font = new System.Drawing.Font("Microsoft Tai Le", 8.25F);
             this.outsidePassword.Location = new System.Drawing.Point(88, 225);
             this.outsidePassword.Name = "outsidePassword";
-            this.outsidePassword.Size = new System.Drawing.Size(218, 20);
+            this.outsidePassword.Size = new System.Drawing.Size(218, 21);
             this.outsidePassword.TabIndex = 2;
             this.outsidePassword.UseSystemPasswordChar = true;
             // 
@@ -137,6 +139,7 @@
             this.hidePassword.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.hidePassword.TabIndex = 21;
             this.hidePassword.TabStop = false;
+            this.hidePassword.Visible = false;
             this.hidePassword.Click += new System.EventHandler(this.hidePassword_Click);
             // 
             // UsernameLog

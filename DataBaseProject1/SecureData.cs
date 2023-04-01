@@ -9,9 +9,9 @@ namespace DataBaseProject1
 {
     internal class SecureData
     {
-        public static string HashPassword(string passoword, byte[] salt, int ittr = 10000)
+        public static string HashPassword(string password, byte[] salt, int ittr = 10000)
         {
-            using (var rfc2898 = new Rfc2898DeriveBytes(passoword, salt, ittr))
+            using (var rfc2898 = new Rfc2898DeriveBytes(password, salt, ittr))
             {
                 return Convert.ToBase64String(rfc2898.GetBytes(20));
             }
@@ -27,7 +27,6 @@ namespace DataBaseProject1
         }
 
 
-        
 
 
 
