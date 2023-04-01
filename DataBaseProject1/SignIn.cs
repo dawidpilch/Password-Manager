@@ -37,24 +37,24 @@ namespace DataBaseProject1
         {
             using (SqlConnection conn = new SqlConnection(@"Data Source=DESKTOP-JBI31J2;Initial Catalog=DataBaseProject1;Integrated Security=True;"))
             {
-                SqlDataAdapter da = new SqlDataAdapter
-                    ("Select Count(*) From USERS where USERNAME='" + outsideUsername.Text + "' and PASSWORD ='"
-                    + outsidePassword.Text + "'", conn);
+                //SqlDataAdapter da = new SqlDataAdapter
+                //    ("Select Count(*) From USERS where USERNAME='" + outsideUsername.Text + "' and PASSWORD ='"
+                //    + outsidePassword.Text + "'", conn);
 
-                DataTable dataTable = new DataTable();
-                da.Fill(dataTable);
+                //DataTable dataTable = new DataTable();
+                //da.Fill(dataTable);
 
-                if (dataTable.Rows[0][0].ToString() == "1")
-                {
-                    this.Hide();
-                    LoggedIn loggedIn = new LoggedIn();
-                    loggedIn.Show();
-                }
+                //if (dataTable.Rows[0][0].ToString() == "1")
+                //{
+                //    this.Hide();
+                //    LoggedIn loggedIn = new LoggedIn();
+                //    loggedIn.Show();
+                //}
 
-                else
-                {
-                    MessageBox.Show("Wrong username or password!");
-                }
+                //else
+                //{
+                //    MessageBox.Show("Wrong username or password!");
+                //}
             }
         }
 

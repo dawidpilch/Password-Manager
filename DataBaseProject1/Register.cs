@@ -18,8 +18,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
  //  | |   | (_) |   | (_| | | (_) |  _ 
  //  |_|    \___/     \__,_|  \___/  (_)
                                       
-    // -> New Unique Username System [X]
-    // -> Password Logic to accept only UTF-8 Characters
+//
 
 
 
@@ -36,6 +35,7 @@ namespace DataBaseProject1
         public static bool PhoneNumberAccepted;
         public static bool EmailAccepted;
         public static bool UniqueUsername;
+        public static bool UniqueEmail;
 
         public Register()
         {
@@ -58,8 +58,9 @@ namespace DataBaseProject1
         
         private void buttonRegister_Click(object sender, EventArgs e)
         {
+            
+            #region //======= Username TextBox =======//
             usernameInfo.Text = "You can use letters and numbers.\r\n";
-            //======= Username TextBox =======//
             if (usernameRegister.Text.Length < 6 || usernameRegister.Text.Length > 30)
             {
                 usernameRegister.BackColor = Color.FromArgb(192, 0, 0);
@@ -116,17 +117,21 @@ namespace DataBaseProject1
                     conn.Close();
                 }
             }
+            #endregion
 
 
-            //======= Password TextBox =======//
-            if (passwordRegister.Text.Length < 8)
+            #region //======= Password TextBox =======//
+            bool passwordCharsAllowed = passwordRegister.Text.All(c => SecureData.chars.Contains(c));
+
+
+            if (passwordRegister.Text.Length < 8 || passwordCharsAllowed == false)
             {
                 passwordRegister.BackColor = Color.FromArgb(192, 0, 0);
                 passwordRegister.ForeColor = Color.FromArgb(255, 255, 255);
                 passwordRegisterConfirmation.BackColor = Color.FromArgb(255, 255, 255);
                 passwordRegisterConfirmation.ForeColor = Color.FromArgb(0, 0, 0);
                 passwordInfo.ForeColor = Color.FromArgb(192, 0, 0);
-                passwordInfo.Text = "Use 8 or more characters with a mix of letters, \r\nnumbers and symbols";
+                passwordInfo.Text = "Use 8 or more characters with a mix of letters, \r\nnumbers and symbols.";
                 PasswordAccepted = false;
                 passwordInfo.Visible = true;
             }
@@ -169,13 +174,15 @@ namespace DataBaseProject1
                     passwordInfo.Text = "Those passwords didn't match. Try again.";
                 }
             }
+            #endregion
 
 
-            //======= Email Adress TextBox =======//
+            #region //======= Email Adress TextBox =======//
             if (string.IsNullOrEmpty(emailRegister.Text))
             {
                 emailRegister.BackColor = Color.FromArgb(192, 0, 0);
                 emailRegister.ForeColor = Color.FromArgb(255, 255, 255);
+                emailInfo.Text = "Invalid E-Mail!";
                 emailInfo.Visible = true;
                 EmailAccepted = false;
             }
@@ -184,6 +191,7 @@ namespace DataBaseProject1
             {
                 emailRegister.BackColor = Color.FromArgb(192, 0, 0);
                 emailRegister.ForeColor = Color.FromArgb(255, 255, 255);
+                emailInfo.Text = "Invalid E-Mail!";
                 emailInfo.Visible = true;
                 EmailAccepted = false;
             }
@@ -196,8 +204,37 @@ namespace DataBaseProject1
                 EmailAccepted = true;
             }
 
+            //Checking if E-Mail is no already in use
+            if (EmailAccepted == true)
+            {
+                using (SqlConnection conn = new SqlConnection(@"Data Source=DESKTOP-JBI31J2;Initial Catalog=DataBaseProject1;Integrated Security=True;"))
+                {
+                    conn.Open();
+                    SqlCommand cmdEmailCheck = new SqlCommand("Select Count(*) From USERS where EMAIL='" + emailRegister.Text + "' COLLATE SQL_Latin1_General_CP1_CS_AS", conn);
+                    string cmdEmailResult = cmdEmailCheck.ExecuteScalar().ToString();
 
-            //======= Phone Number TextBox =======//
+                    if (cmdEmailResult == "0")
+                    {
+                        UniqueEmail = true;
+                        emailInfo.Visible = false;
+                    }
+
+                    else
+                    {
+                        UniqueEmail = false;
+                        emailInfo.Visible = true;
+                        emailInfo.Text = "This email is already connected to an account!\r\n";
+                        emailRegister.BackColor = Color.FromArgb(192, 0, 0);
+                        emailRegister.ForeColor = Color.FromArgb(255, 255, 255);
+                    }
+                    conn.Close();
+                }
+            }
+
+            #endregion
+
+
+            #region //======= Phone Number TextBox =======//
             PhoneNumberAccepted = IsDigitsOnly(phoneRegister.Text);
 
             if (PhoneNumberAccepted == false)
@@ -213,9 +250,10 @@ namespace DataBaseProject1
                 phoneRegister.ForeColor = Color.FromArgb(0, 0, 0);
                 phoneInfo.Visible = false;
             }
+            #endregion
 
 
-            //Checking if all Required Fields are filled. If not, the Connection with a DB won't be established
+            //Checking if all Required Fields are filled and accepted. If not, the Connection with a DB won't be established
             //and the data will not land in the DB.
             if (UsernameAccepted == true && UniqueUsername == true && PasswordAccepted == true && EmailAccepted == true && PhoneNumberAccepted == true)
             {

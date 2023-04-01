@@ -13,16 +13,18 @@ namespace DataBaseProject1
         {
             using (var rfc2898 = new Rfc2898DeriveBytes(password, salt, ittr))
             {
-                return Convert.ToBase64String(rfc2898.GetBytes(20));
+                return Convert.ToBase64String(rfc2898.GetBytes(50));
             }
         }
 
 
         private static Random random = new Random();
 
+        public const string chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ12345678901234567890!#%^&$*-=_+,.?/<>";
+
         public static string CreateSalt(int stringLength)
         {
-            const string chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ12345678901234567890!#%^&$*-=_+,.?/<>";
+            
             return new string(Enumerable.Repeat(chars, stringLength).Select(s => s[random.Next(s.Length)]).ToArray());
         }
 
