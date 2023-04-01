@@ -16,7 +16,6 @@ using System.Data.SqlClient;
  //  | |   | (_) |   | (_| | | (_) |  _ 
  //  |_|    \___/     \__,_|  \___/  (_)
                                       
-    // -> New Login Form based on Unique Usernames and Hashed Passwords
 
 
 
@@ -35,26 +34,55 @@ namespace DataBaseProject1
 
         public void loginButton_Click_1(object sender, EventArgs e)
         {
-            using (SqlConnection conn = new SqlConnection(@"Data Source=DESKTOP-JBI31J2;Initial Catalog=DataBaseProject1;Integrated Security=True;"))
+            if (!string.IsNullOrEmpty(outsideUsername.Text) && !string.IsNullOrEmpty(outsidePassword.Text))
             {
-                //SqlDataAdapter da = new SqlDataAdapter
-                //    ("Select Count(*) From USERS where USERNAME='" + outsideUsername.Text + "' and PASSWORD ='"
-                //    + outsidePassword.Text + "'", conn);
+                using (SqlConnection conn = new SqlConnection(@"Data Source=DESKTOP-JBI31J2;Initial Catalog=DataBaseProject1;Integrated Security=True;"))
+                {
+                    conn.Open();
 
-                //DataTable dataTable = new DataTable();
-                //da.Fill(dataTable);
+                    //Checking if User Exists
+                    SqlCommand cmdDoesUserExist = new SqlCommand
+                        ("SELECT COUNT(*) [USERNAME] FROM [DataBaseProject1].[dbo].[USERS] WHERE [USERNAME] = '"
+                        + outsideUsername.Text + "' COLLATE SQL_Latin1_General_CP1_CS_AS;", conn);
+                    string cmdDoesUserExistResult = cmdDoesUserExist.ExecuteScalar().ToString();
 
-                //if (dataTable.Rows[0][0].ToString() == "1")
-                //{
-                //    this.Hide();
-                //    LoggedIn loggedIn = new LoggedIn();
-                //    loggedIn.Show();
-                //}
+                    if (cmdDoesUserExistResult != "0")
+                    {
+                        //If User Exists, find their salt
+                        SqlCommand cmdGetUsersSalt = new SqlCommand
+                            ("SELECT [PASSWORDSALT] FROM [DataBaseProject1].[dbo].[USERS] WHERE [USERNAME] = '"
+                            + outsideUsername.Text + "' COLLATE SQL_Latin1_General_CP1_CS_AS", conn);
+                        string cmdGetUsersSaltResult = cmdGetUsersSalt.ExecuteScalar().ToString();
 
-                //else
-                //{
-                //    MessageBox.Show("Wrong username or password!");
-                //}
+                        byte[] cmdGetUserSaltResultByte = Encoding.ASCII.GetBytes(cmdGetUsersSaltResult);
+
+                        string passwordCheck = SecureData.HashPassword(outsidePassword.Text, cmdGetUserSaltResultByte);
+
+
+                        //Comparing Hashed Passwords
+                        SqlCommand cmdComparePasswords = new SqlCommand
+                            ("SELECT COUNT(*) [PASSWORD] FROM [DataBaseProject1].[dbo].[USERS] WHERE [USERNAME] = '"
+                            + outsideUsername.Text + "' COLLATE SQL_Latin1_General_CP1_CS_AS " +
+                            "AND [PASSWORD] = '" + passwordCheck + "'", conn);
+                        string cmdComparePasswordsResult = cmdComparePasswords.ExecuteScalar().ToString();
+
+                        if (cmdComparePasswordsResult == "1")
+                        {
+                            MessageBox.Show("Hello " + outsideUsername.Text + "! \n" + passwordCheck);
+                        }
+                    }
+
+                    else
+                    {
+                        MessageBox.Show("Wrong username or password!");
+                    }
+                    conn.Close();
+                }
+            }
+
+            else
+            {
+                MessageBox.Show("Enter Username");
             }
         }
 

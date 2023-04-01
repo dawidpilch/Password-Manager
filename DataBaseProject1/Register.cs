@@ -204,13 +204,13 @@ namespace DataBaseProject1
                 EmailAccepted = true;
             }
 
-            //Checking if E-Mail is no already in use
+            //Checking if E-Mail is no already in use (EMails are not case sensitive!)
             if (EmailAccepted == true)
             {
                 using (SqlConnection conn = new SqlConnection(@"Data Source=DESKTOP-JBI31J2;Initial Catalog=DataBaseProject1;Integrated Security=True;"))
                 {
                     conn.Open();
-                    SqlCommand cmdEmailCheck = new SqlCommand("Select Count(*) From USERS where EMAIL='" + emailRegister.Text + "' COLLATE SQL_Latin1_General_CP1_CS_AS", conn);
+                    SqlCommand cmdEmailCheck = new SqlCommand("Select Count(*) From USERS where EMAIL='" + emailRegister.Text + "'", conn);
                     string cmdEmailResult = cmdEmailCheck.ExecuteScalar().ToString();
 
                     if (cmdEmailResult == "0")

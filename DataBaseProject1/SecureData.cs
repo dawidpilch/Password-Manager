@@ -28,11 +28,6 @@ namespace DataBaseProject1
             return new string(Enumerable.Repeat(chars, stringLength).Select(s => s[random.Next(s.Length)]).ToArray());
         }
 
-
-
-
-
-
         //public static string EncryptData(string unsecuredData) 
         //{
         //    MD5 md5 = new MD5CryptoServiceProvider();
