@@ -72,7 +72,9 @@ namespace DataBaseProject1
                         if (cmdComparePasswordsResult == "1")
                         {
                             passwordInfo.Visible = false;
-                            MessageBox.Show("Hello " + outsideUsername.Text + "! \n" + passwordCheck);
+                            this.Hide();
+                            LoggedIn loggedIn = new LoggedIn();
+                            loggedIn.Show();
                         }
                     }
 
