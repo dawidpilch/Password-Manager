@@ -22,6 +22,8 @@ namespace DataBaseProject1
 {
     public partial class SignIn : Form
     {
+        public static string Username;
+
         public SignIn()
         {
             InitializeComponent();
@@ -72,9 +74,11 @@ namespace DataBaseProject1
                         if (cmdComparePasswordsResult == "1")
                         {
                             passwordInfo.Visible = false;
+                            Username = outsideUsername.Text;
                             this.Hide();
                             LoggedIn loggedIn = new LoggedIn();
                             loggedIn.Show();
+                            
                         }
                     }
 
