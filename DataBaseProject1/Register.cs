@@ -262,29 +262,13 @@ namespace DataBaseProject1
                     conn.Open();
                     SqlCommand command = new SqlCommand();
 
-                    SqlDataAdapter getLatestID = new SqlDataAdapter("SELECT MAX(ID) AS MaxID FROM [DataBaseProject1].[dbo].[USERS]", conn);
-
-                    DataTable dataTable = new DataTable();
-                    getLatestID.Fill(dataTable);
-                    string tostring = dataTable.Rows[0][0].ToString();
-                    int latestID = int.Parse(tostring);
-                    int NewID = latestID + 1;
-
-
                     //Salts for Username and Password
                     string passwordSalt = SecureData.CreateSalt(8);
                     byte[] passwordSaltByte = Encoding.ASCII.GetBytes(passwordSalt);
 
-                    //string usernameSalt = SecureData.CreateSalt(8);
-                    //byte[] usernameSaltByte = Encoding.ASCII.GetBytes(usernameSalt);
-
-
                     //Inserting into DataBase
                     command = new SqlCommand
-                        ("Insert into USERS (ID, USERNAME, PASSWORD, EMAIL, PHONENUMBER, DATE, PASSWORDSALT) values ('" +
-
-                        //ID
-                        NewID + "', '" +
+                        ("Insert into USERS (USERNAME, PASSWORD, EMAIL, PHONENUMBER, DATE, PASSWORDSALT) values ('" +
 
                         //USERNAME
                         usernameRegister.Text + "', '" +
