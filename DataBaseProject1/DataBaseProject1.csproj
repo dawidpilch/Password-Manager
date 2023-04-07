@@ -52,6 +52,18 @@
     <Compile Include="LoggedInChildForms\LoginList.Designer.cs">
       <DependentUpon>LoginList.cs</DependentUpon>
     </Compile>
+    <Compile Include="LoggedInChildForms\NewCard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoggedInChildForms\NewCard.Designer.cs">
+      <DependentUpon>NewCard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LoggedInChildForms\NewIdentity.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoggedInChildForms\NewIdentity.Designer.cs">
+      <DependentUpon>NewIdentity.cs</DependentUpon>
+    </Compile>
     <Compile Include="LoggedInChildForms\NewLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -81,6 +93,12 @@
     <Compile Include="SecureData.cs" />
     <EmbeddedResource Include="LoggedInChildForms\LoginList.resx">
       <DependentUpon>LoginList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoggedInChildForms\NewCard.resx">
+      <DependentUpon>NewCard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoggedInChildForms\NewIdentity.resx">
+      <DependentUpon>NewIdentity.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LoggedInChildForms\NewLogin.resx">
       <DependentUpon>NewLogin.cs</DependentUpon>

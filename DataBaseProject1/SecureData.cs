@@ -28,6 +28,24 @@ namespace DataBaseProject1
             return new string(Enumerable.Repeat(chars, stringLength).Select(s => s[random.Next(s.Length)]).ToArray());
         }
 
+
+        public string convertQuotes(string str)
+        {
+            if (str.Contains("'"))
+            {
+                return str.Replace("'", "''");
+            }
+
+            if (str.Contains('"'))
+            {
+                return str.Replace('"', (char)('"' + '"'));
+            }
+            else
+            {
+                return str;
+            }
+        }
+
         //public static string EncryptData(string unsecuredData) 
         //{
         //    MD5 md5 = new MD5CryptoServiceProvider();

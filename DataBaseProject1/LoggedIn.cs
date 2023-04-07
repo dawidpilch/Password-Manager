@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DataBaseProject1.LoggedInChildForms;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,18 +15,16 @@ namespace DataBaseProject1
     public partial class LoggedIn : Form
     {
         private Button currentButton;
-        private string CurrentUserID;
-        private bool PlusButtonClickable = true;
-
+        public string CurrentUserID;
+        public static LoggedIn instance;
 
 
         public LoggedIn()
         {
             InitializeComponent();
-            //INSERT INTO[DataBaseProject1].[dbo].[USERS_LOGINS]
-            //(USER_ID, LOGIN_NAME, LOGIN_USERNAME, LOGIN_PASSWORD)
-            //VALUES(3, 'TikTok', 'GrzejnikTikTok', 'węxżą231');
-            //comboBox1.SelectedIndex = 0;
+            instance = this;
+            addNewLogin.Visible = true;
+            
 
             using (SqlConnection conn = new SqlConnection(@"Data Source=DESKTOP-JBI31J2;Initial Catalog=DataBaseProject1;Integrated Security=True;"))
             {
@@ -36,6 +35,10 @@ namespace DataBaseProject1
                 CurrentUserID = getUserID.ExecuteScalar().ToString();
                 conn.Close();
             }
+
+            newFormHeader.BorderStyle = BorderStyle.None;
+            typeLabel.Visible = false;
+            newFormType.Visible = false;
         }
 
 
@@ -70,7 +73,6 @@ namespace DataBaseProject1
             currentButton = (Button)btnSender;
             currentButton.BackColor = Color.White;
             currentButton.ForeColor = Color.FromArgb(0, 204, 103);
-                
         }
 
         private void DisableButton()
@@ -88,7 +90,6 @@ namespace DataBaseProject1
         private Form activeForm;
         private void OpenItemsListChildForm(object btnSender)
         {
-
             ActivateButton(btnSender);
             using (SqlConnection conn = new SqlConnection(@"Data Source=DESKTOP-JBI31J2;Initial Catalog=DataBaseProject1;Integrated Security=True;"))
             {
@@ -99,18 +100,17 @@ namespace DataBaseProject1
 
                 if (loginsCountResult != "0")
                 {
-
+                    //
                 }
 
                 else
                 {
-                    addNewLogin.Visible = true;
                     emptyLoginList.Visible = true;
                 }
             }
         }
 
-        private void OpenCreatingNewForm(Form childForm, object btnSender)
+        public void OpenCreatingNewForm(Form childForm)
         {
             if (activeForm != null)
             {
@@ -120,6 +120,7 @@ namespace DataBaseProject1
             activeForm = childForm;
             childForm.TopLevel = false;
             childForm.FormBorderStyle = FormBorderStyle.None;
+            childForm.Dock = DockStyle.Fill;
             childForm.Location = new Point(15, 15);
             this.panel3.Controls.Add(childForm);
             this.panel3.Tag = childForm;
@@ -129,10 +130,28 @@ namespace DataBaseProject1
 
         private void addNewLogin_Click(object sender, EventArgs e)
         {
-            if (PlusButtonClickable == true)
+                OpenCreatingNewForm(new LoggedInChildForms.NewLogin());
+                newFormType.SelectedIndex = 0;
+                newFormHeader.BorderStyle = BorderStyle.FixedSingle;
+                typeLabel.Visible = true;
+                newFormType.Visible = true;
+        }
+
+        private void newFormType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (newFormType.SelectedIndex == 0)
             {
-                OpenCreatingNewForm(new LoggedInChildForms.NewLogin(), sender);
-                PlusButtonClickable = false;
+                OpenCreatingNewForm(new LoggedInChildForms.NewLogin());
+            }
+
+            else if (newFormType.SelectedIndex == 1)
+            {
+                OpenCreatingNewForm(new LoggedInChildForms.NewCard());
+            }
+
+            else if (newFormType.SelectedIndex == 2)
+            {
+                OpenCreatingNewForm(new LoggedInChildForms.NewIdentity());
             }
         }
     }

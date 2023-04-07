@@ -41,14 +41,18 @@
             this.button4 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.newFormHeader = new System.Windows.Forms.Panel();
+            this.newFormType = new System.Windows.Forms.ComboBox();
+            this.typeLabel = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.newFormHeader.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -142,7 +146,7 @@
             this.panel5.Controls.Add(this.addNewLogin);
             this.panel5.Location = new System.Drawing.Point(207, 617);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(289, 64);
+            this.panel5.Size = new System.Drawing.Size(284, 67);
             this.panel5.TabIndex = 2;
             // 
             // addNewLogin
@@ -151,9 +155,9 @@
             this.addNewLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.addNewLogin.Font = new System.Drawing.Font("Microsoft Uighur", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.addNewLogin.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.addNewLogin.Location = new System.Drawing.Point(10, 13);
+            this.addNewLogin.Location = new System.Drawing.Point(8, 13);
             this.addNewLogin.Name = "addNewLogin";
-            this.addNewLogin.Size = new System.Drawing.Size(262, 40);
+            this.addNewLogin.Size = new System.Drawing.Size(268, 40);
             this.addNewLogin.TabIndex = 1;
             this.addNewLogin.Text = "➕";
             this.addNewLogin.UseVisualStyleBackColor = true;
@@ -206,44 +210,86 @@
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel3.Controls.Add(this.label1);
             this.panel3.Controls.Add(this.pictureBox1);
-            this.panel3.Location = new System.Drawing.Point(489, 46);
+            this.panel3.Location = new System.Drawing.Point(490, 123);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(740, 639);
+            this.panel3.Size = new System.Drawing.Size(755, 561);
             this.panel3.TabIndex = 2;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(200, 208);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(350, 188);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Tai Le", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label1.Location = new System.Drawing.Point(301, 399);
+            this.label1.Location = new System.Drawing.Point(305, 364);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(144, 14);
             this.label1.TabIndex = 20;
             this.label1.Text = "KEEP YOUR PRIVACY SAFE";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(204, 152);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(350, 209);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            // 
+            // newFormHeader
+            // 
+            this.newFormHeader.AutoScroll = true;
+            this.newFormHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.newFormHeader.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.newFormHeader.Controls.Add(this.newFormType);
+            this.newFormHeader.Controls.Add(this.typeLabel);
+            this.newFormHeader.Location = new System.Drawing.Point(490, 42);
+            this.newFormHeader.Name = "newFormHeader";
+            this.newFormHeader.Size = new System.Drawing.Size(755, 82);
+            this.newFormHeader.TabIndex = 21;
+            // 
+            // newFormType
+            // 
+            this.newFormType.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.newFormType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.newFormType.Font = new System.Drawing.Font("Microsoft Tai Le", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.newFormType.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.newFormType.FormattingEnabled = true;
+            this.newFormType.Items.AddRange(new object[] {
+            "Login",
+            "Card",
+            "Identity"});
+            this.newFormType.Location = new System.Drawing.Point(187, 35);
+            this.newFormType.Name = "newFormType";
+            this.newFormType.Size = new System.Drawing.Size(379, 22);
+            this.newFormType.TabIndex = 10;
+            this.newFormType.SelectedIndexChanged += new System.EventHandler(this.newFormType_SelectedIndexChanged);
+            // 
+            // typeLabel
+            // 
+            this.typeLabel.AutoSize = true;
+            this.typeLabel.Font = new System.Drawing.Font("Microsoft Tai Le", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.typeLabel.ForeColor = System.Drawing.SystemColors.ControlDark;
+            this.typeLabel.Location = new System.Drawing.Point(355, 18);
+            this.typeLabel.Name = "typeLabel";
+            this.typeLabel.Size = new System.Drawing.Size(29, 14);
+            this.typeLabel.TabIndex = 9;
+            this.typeLabel.Text = "TYPE";
+            // 
             // LoggedIn
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ClientSize = new System.Drawing.Size(1223, 681);
-            this.Controls.Add(this.panel1);
-            this.Controls.Add(this.panel3);
+            this.ClientSize = new System.Drawing.Size(1244, 681);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel2);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel5);
+            this.Controls.Add(this.newFormHeader);
+            this.Controls.Add(this.panel3);
+            this.MinimumSize = new System.Drawing.Size(1260, 720);
             this.Name = "LoggedIn";
             this.Padding = new System.Windows.Forms.Padding(2);
             this.Text = "LoggedIn";
@@ -256,6 +302,8 @@
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.newFormHeader.ResumeLayout(false);
+            this.newFormHeader.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -270,11 +318,14 @@
         private System.Windows.Forms.Button cardTab;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Button addNewLogin;
         private System.Windows.Forms.Label emptyLoginList;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label1;
+        public System.Windows.Forms.Panel panel3;
+        public System.Windows.Forms.Panel newFormHeader;
+        private System.Windows.Forms.Label typeLabel;
+        public System.Windows.Forms.ComboBox newFormType;
     }
 }
