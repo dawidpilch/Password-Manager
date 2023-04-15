@@ -100,7 +100,7 @@ namespace DataBaseProject1
 
                 if (loginsCountResult != "0")
                 {
-                    //
+                    OpenCreatingNewForm(new LoggedInChildForms.UserDataListed(), panel2);
                 }
 
                 else
@@ -110,7 +110,7 @@ namespace DataBaseProject1
             }
         }
 
-        public void OpenCreatingNewForm(Form childForm)
+        public void OpenCreatingNewForm(Form childForm, Panel panel)
         {
             if (activeForm != null)
             {
@@ -122,15 +122,15 @@ namespace DataBaseProject1
             childForm.FormBorderStyle = FormBorderStyle.None;
             childForm.Dock = DockStyle.Fill;
             childForm.Location = new Point(15, 15);
-            this.panel3.Controls.Add(childForm);
-            this.panel3.Tag = childForm;
+            panel.Controls.Add(childForm);
+            panel.Tag = childForm;
             childForm.BringToFront();
             childForm.Show();
         }
 
         private void addNewLogin_Click(object sender, EventArgs e)
         {
-                OpenCreatingNewForm(new LoggedInChildForms.NewLogin());
+                OpenCreatingNewForm(new LoggedInChildForms.NewLogin(), panel3);
                 newFormType.SelectedIndex = 0;
                 newFormHeader.BorderStyle = BorderStyle.FixedSingle;
                 typeLabel.Visible = true;
@@ -141,17 +141,17 @@ namespace DataBaseProject1
         {
             if (newFormType.SelectedIndex == 0)
             {
-                OpenCreatingNewForm(new LoggedInChildForms.NewLogin());
+                OpenCreatingNewForm(new LoggedInChildForms.NewLogin(), panel3);
             }
 
             else if (newFormType.SelectedIndex == 1)
             {
-                OpenCreatingNewForm(new LoggedInChildForms.NewCard());
+                OpenCreatingNewForm(new LoggedInChildForms.NewCard(), panel3);
             }
 
             else if (newFormType.SelectedIndex == 2)
             {
-                OpenCreatingNewForm(new LoggedInChildForms.NewIdentity());
+                OpenCreatingNewForm(new LoggedInChildForms.NewIdentity(), panel3);
             }
         }
     }

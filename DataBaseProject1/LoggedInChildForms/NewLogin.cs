@@ -113,16 +113,6 @@ namespace DataBaseProject1.LoggedInChildForms
                     MessageBox.Show("Insert Name");
                 }
             }
-
-            else if (loggedIn.newFormType.SelectedIndex == 1)
-            {
-
-            }
-
-            else if (loggedIn.newFormType.SelectedIndex == 2)
-            {
-
-            }
         }
 
         private void button1_Click(object sender, EventArgs e)

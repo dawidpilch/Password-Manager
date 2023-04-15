@@ -70,6 +70,12 @@
     <Compile Include="LoggedInChildForms\NewLogin.Designer.cs">
       <DependentUpon>NewLogin.cs</DependentUpon>
     </Compile>
+    <Compile Include="LoggedInChildForms\UserDataListed.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoggedInChildForms\UserDataListed.Designer.cs">
+      <DependentUpon>UserDataListed.cs</DependentUpon>
+    </Compile>
     <Compile Include="SignIn.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -102,6 +108,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="LoggedInChildForms\NewLogin.resx">
       <DependentUpon>NewLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoggedInChildForms\UserDataListed.resx">
+      <DependentUpon>UserDataListed.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SignIn.resx">
       <DependentUpon>SignIn.cs</DependentUpon>
