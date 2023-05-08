@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data Base\Connections.cs" />
     <Compile Include="LoggedInChildForms\LoginList.cs">
       <SubType>Form</SubType>
     </Compile>

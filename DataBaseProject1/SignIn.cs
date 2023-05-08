@@ -8,21 +8,16 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
-
-
- // _____                 _             
- //|_   _|   ___       __| |   ___    _ 
- //  | |    / _ \     / _` |  / _ \  (_)
- //  | |   | (_) |   | (_| | | (_) |  _ 
- //  |_|    \___/     \__,_|  \___/  (_)
-
-
+using DataBaseProject1.Data_Base;
 
 namespace DataBaseProject1
 {
     public partial class SignIn : Form
     {
         public static string Username;
+
+        Connections connections = new Connections();
+        
 
         public SignIn()
         {
@@ -37,13 +32,13 @@ namespace DataBaseProject1
         {
             if (!string.IsNullOrEmpty(outsideUsername.Text) && !string.IsNullOrEmpty(outsidePassword.Text))
             {
-                using (SqlConnection conn = new SqlConnection(@"Data Source=DESKTOP-JBI31J2;Initial Catalog=DataBaseProject1;Integrated Security=True;"))
+                using (SqlConnection conn = new SqlConnection(connections.ConnectionString))
                 {
                     conn.Open();
 
                     //Checking if User Exists
                     SqlCommand cmdDoesUserExist = new SqlCommand
-                        ("SELECT COUNT(*) [USERNAME] FROM [DataBaseProject1].[dbo].[USERS] WHERE [USERNAME] = '"
+                        ("SELECT COUNT(*) USERNAME FROM USERS WHERE USERNAME = '"
                         + outsideUsername.Text + "' COLLATE SQL_Latin1_General_CP1_CS_AS;", conn);
                     string cmdDoesUserExistResult = cmdDoesUserExist.ExecuteScalar().ToString();
 
@@ -55,7 +50,7 @@ namespace DataBaseProject1
 
                         //If User Exists, find their salt
                         SqlCommand cmdGetUsersSalt = new SqlCommand
-                            ("SELECT [PASSWORDSALT] FROM [DataBaseProject1].[dbo].[USERS] WHERE [USERNAME] = '"
+                            ("SELECT PASSWORDSALT FROM USERS WHERE USERNAME = '"
                             + outsideUsername.Text + "' COLLATE SQL_Latin1_General_CP1_CS_AS", conn);
                         string cmdGetUsersSaltResult = cmdGetUsersSalt.ExecuteScalar().ToString();
 
@@ -63,12 +58,11 @@ namespace DataBaseProject1
 
                         string passwordCheck = SecureData.HashPassword(outsidePassword.Text, cmdGetUserSaltResultByte);
 
-
                         //Comparing Hashed Passwords
                         SqlCommand cmdComparePasswords = new SqlCommand
-                            ("SELECT COUNT(*) [PASSWORD] FROM [DataBaseProject1].[dbo].[USERS] WHERE [USERNAME] = '"
+                            ("SELECT COUNT(*) PASSWORD FROM USERS WHERE USERNAME = '"
                             + outsideUsername.Text + "' COLLATE SQL_Latin1_General_CP1_CS_AS " +
-                            "AND [PASSWORD] = '" + passwordCheck + "'", conn);
+                            "AND PASSWORD = '" + passwordCheck + "'", conn);
                         string cmdComparePasswordsResult = cmdComparePasswords.ExecuteScalar().ToString();
 
                         if (cmdComparePasswordsResult == "1")

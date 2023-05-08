@@ -10,22 +10,13 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Security.Cryptography;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
-
-
- // _____                 _             
- //|_   _|   ___       __| |   ___    _ 
- //  | |    / _ \     / _` |  / _ \  (_)
- //  | |   | (_) |   | (_| | | (_) |  _ 
- //  |_|    \___/     \__,_|  \___/  (_)
-                                      
-//
-
-
+using DataBaseProject1.Data_Base;
 
 namespace DataBaseProject1
 {
     public partial class Register : Form
     {
+        Connections connections= new Connections();
 
         public static string NewID = "987654321";
 
@@ -91,7 +82,7 @@ namespace DataBaseProject1
             //Checking if Username is not already taken
             if (UsernameAccepted == true)
             {
-                using (SqlConnection conn = new SqlConnection(@"Data Source=DESKTOP-JBI31J2;Initial Catalog=DataBaseProject1;Integrated Security=True;"))
+                using (SqlConnection conn = new SqlConnection(connections.ConnectionString))
                 {
                     conn.Open();
                     SqlCommand cmdUsernameCheck = new SqlCommand("Select Count(*) From USERS where USERNAME='" + usernameRegister.Text + "' COLLATE SQL_Latin1_General_CP1_CS_AS", conn);
@@ -207,7 +198,7 @@ namespace DataBaseProject1
             //Checking if E-Mail is no already in use (EMails are not case sensitive!)
             if (EmailAccepted == true)
             {
-                using (SqlConnection conn = new SqlConnection(@"Data Source=DESKTOP-JBI31J2;Initial Catalog=DataBaseProject1;Integrated Security=True;"))
+                using (SqlConnection conn = new SqlConnection(connections.ConnectionString))
                 {
                     conn.Open();
                     SqlCommand cmdEmailCheck = new SqlCommand("Select Count(*) From USERS where EMAIL='" + emailRegister.Text + "'", conn);
@@ -257,7 +248,7 @@ namespace DataBaseProject1
             //and the data will not land in the DB.
             if (UsernameAccepted == true && UniqueUsername == true && PasswordAccepted == true && EmailAccepted == true && PhoneNumberAccepted == true)
             {
-                using (SqlConnection conn = new SqlConnection(@"Data Source=DESKTOP-JBI31J2;Initial Catalog=DataBaseProject1;Integrated Security=True;"))
+                using (SqlConnection conn = new SqlConnection(connections.ConnectionString))
                 {
                     conn.Open();
                     SqlCommand command = new SqlCommand();

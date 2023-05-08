@@ -1,4 +1,5 @@
-﻿using DataBaseProject1.LoggedInChildForms;
+﻿using DataBaseProject1.Data_Base;
+using DataBaseProject1.LoggedInChildForms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,6 +19,7 @@ namespace DataBaseProject1
         public string CurrentUserID;
         public static LoggedIn instance;
 
+        Connections connections = new Connections();
 
         public LoggedIn()
         {
@@ -26,11 +28,11 @@ namespace DataBaseProject1
             addNewLogin.Visible = true;
             
 
-            using (SqlConnection conn = new SqlConnection(@"Data Source=DESKTOP-JBI31J2;Initial Catalog=DataBaseProject1;Integrated Security=True;"))
+            using (SqlConnection conn = new SqlConnection(connections.ConnectionString))
             {
                 conn.Open();
                 SqlCommand getUserID = new SqlCommand
-                    ("SELECT [ID] FROM [DataBaseProject1].[dbo].[USERS] WHERE [USERNAME] = '" 
+                    ("SELECT ID FROM USERS WHERE USERNAME = '" 
                     + SignIn.Username + "' COLLATE SQL_Latin1_General_CP1_CS_AS", conn);
                 CurrentUserID = getUserID.ExecuteScalar().ToString();
                 conn.Close();
@@ -91,22 +93,22 @@ namespace DataBaseProject1
         private void OpenItemsListChildForm(object btnSender)
         {
             ActivateButton(btnSender);
-            using (SqlConnection conn = new SqlConnection(@"Data Source=DESKTOP-JBI31J2;Initial Catalog=DataBaseProject1;Integrated Security=True;"))
+            using (SqlConnection conn = new SqlConnection(connections.ConnectionString))
             {
-                conn.Open();
-                SqlCommand loginsCount = new SqlCommand("Select COUNT(*) [LOGINS_ID] FROM [DataBaseProject1].[dbo].[USERS_LOGINS] WHERE [USER_ID] = '" + CurrentUserID + "'", conn);
-                string loginsCountResult = loginsCount.ExecuteScalar().ToString();
-                conn.Close();
+                //conn.Open();
+                //SqlCommand loginsCount = new SqlCommand("Select COUNT(*) LOGINS_ID FROM USERS_LOGINS WHERE USER_ID = '" + CurrentUserID + "'", conn);
+                //string loginsCountResult = loginsCount.ExecuteScalar().ToString();
+                //conn.Close();
 
-                if (loginsCountResult != "0")
-                {
-                    OpenCreatingNewForm(new LoggedInChildForms.UserDataListed(), panel2);
-                }
+                //if (loginsCountResult != "0")
+                //{
+                //    OpenCreatingNewForm(new LoggedInChildForms.UserDataListed(), panel2);
+                //}
 
-                else
-                {
-                    emptyLoginList.Visible = true;
-                }
+                //else
+                //{
+                //    emptyLoginList.Visible = true;
+                //}
             }
         }
 
