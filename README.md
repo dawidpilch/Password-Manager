@@ -20,7 +20,9 @@ I've gained.
  - Working on this project is helping me gain confiedence in writing a C# code,
  - I am getting better understanding of importance of writing a clean code,
  - Used the MS SQL Server,
- - Used the SQL with C# for the first time,
+ - Used SQL with C# for the first time,
+ - Learned more about password hashing techniques and algorithms,
+ - Encryption / Decryption,
  - Still learning a lot of interesting things that I will definetly use in the future.
 
 ### Signing in
