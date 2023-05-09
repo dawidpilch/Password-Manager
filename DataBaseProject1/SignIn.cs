@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using DataBaseProject1.Data_Base;
+using DataBaseProject1.Services;
 
 namespace DataBaseProject1
 {
@@ -28,63 +29,26 @@ namespace DataBaseProject1
             focus.Focus();
         }
 
-        public void loginButton_Click_1(object sender, EventArgs e)
+        public async void loginButton_Click_1(object sender, EventArgs e)
         {
+            User userServices = new User();
+
             if (!string.IsNullOrEmpty(outsideUsername.Text) && !string.IsNullOrEmpty(outsidePassword.Text))
             {
-                using (SqlConnection conn = new SqlConnection(connections.ConnectionString))
+                if (await userServices.Login(outsideUsername.Text, outsidePassword.Text))
                 {
-                    conn.Open();
+                    passwordInfo.Visible = false;
+                    Username = outsideUsername.Text;
+                    this.Hide();
+                    LoggedIn loggedIn = new LoggedIn();
+                    loggedIn.Show();
+                }
 
-                    //Checking if User Exists
-                    SqlCommand cmdDoesUserExist = new SqlCommand
-                        ("SELECT COUNT(*) USERNAME FROM USERS WHERE USERNAME = '"
-                        + outsideUsername.Text + "' COLLATE SQL_Latin1_General_CP1_CS_AS;", conn);
-                    string cmdDoesUserExistResult = cmdDoesUserExist.ExecuteScalar().ToString();
-
-                    if (cmdDoesUserExistResult != "0")
-                    {
-                        usernameInfo.Visible = false;
-                        outsideUsername.BackColor = Color.FromArgb(255, 255, 255);
-                        outsideUsername.ForeColor = Color.FromArgb(0, 0, 0);
-
-                        //If User Exists, find their salt
-                        SqlCommand cmdGetUsersSalt = new SqlCommand
-                            ("SELECT PASSWORDSALT FROM USERS WHERE USERNAME = '"
-                            + outsideUsername.Text + "' COLLATE SQL_Latin1_General_CP1_CS_AS", conn);
-                        string cmdGetUsersSaltResult = cmdGetUsersSalt.ExecuteScalar().ToString();
-
-                        byte[] cmdGetUserSaltResultByte = Encoding.ASCII.GetBytes(cmdGetUsersSaltResult);
-
-                        string passwordCheck = SecureData.HashPassword(outsidePassword.Text, cmdGetUserSaltResultByte);
-
-                        //Comparing Hashed Passwords
-                        SqlCommand cmdComparePasswords = new SqlCommand
-                            ("SELECT COUNT(*) PASSWORD FROM USERS WHERE USERNAME = '"
-                            + outsideUsername.Text + "' COLLATE SQL_Latin1_General_CP1_CS_AS " +
-                            "AND PASSWORD = '" + passwordCheck + "'", conn);
-                        string cmdComparePasswordsResult = cmdComparePasswords.ExecuteScalar().ToString();
-
-                        if (cmdComparePasswordsResult == "1")
-                        {
-                            passwordInfo.Visible = false;
-                            Username = outsideUsername.Text;
-                            this.Hide();
-                            LoggedIn loggedIn = new LoggedIn();
-                            loggedIn.Show();
-                            
-                        }
-                    }
-
-                    else 
-                    {
-                        usernameInfo.Visible = true;
-                        outsideUsername.BackColor = Color.FromArgb(192, 0, 0);
-                        outsideUsername.ForeColor = Color.FromArgb(255, 255, 255);
-                    }
-
-                    
-                    conn.Close();
+                else
+                {
+                    usernameInfo.Visible = true;
+                    outsideUsername.BackColor = Color.FromArgb(192, 0, 0);
+                    outsideUsername.ForeColor = Color.FromArgb(255, 255, 255);
                 }
             }
 

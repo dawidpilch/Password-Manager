@@ -174,11 +174,11 @@
             // 
             this.label5.AutoEllipsis = true;
             this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Oswald", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label5.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label5.Location = new System.Drawing.Point(122, 21);
+            this.label5.Location = new System.Drawing.Point(88, 23);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(171, 40);
+            this.label5.Size = new System.Drawing.Size(220, 31);
             this.label5.TabIndex = 17;
             this.label5.Text = "REGISTRATION";
             // 
