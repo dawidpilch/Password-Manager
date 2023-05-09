@@ -17,7 +17,7 @@ Recently I've been reading about architectural patterns (MVC, MVVM) and started 
 At the moment I am trying to fix as much problems in the project as I can and upgrade it to my current standards and use the knowlage
 I've gained.
 
- - Working on this project is helping me in gaining a confiedence in writing a C# code,
+ - Working on this project is helping me gain confiedence in writing a C# code,
  - I am getting better understanding of importance of writing a clean code,
  - Used the MS SQL Server,
  - Used the SQL with C# for the first time,
