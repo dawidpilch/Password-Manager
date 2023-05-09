@@ -33,8 +33,8 @@ I've gained.
  </div>
  
  ### View when you are logged in
- <img src="DataBaseProject1/Images/LoggedIn.png" width="70%">
+ <img src="DataBaseProject1/Images/LoggedIn.png" width="90%">
  
  ### Hashed passwords and salt
-  <img src="DataBaseProject1/Images/HashingFunction.PNG" width="70%">
-  <img src="DataBaseProject1/Images/HashedPassword.PNG" width="70%">
+  <img src="DataBaseProject1/Images/HashingFunction.PNG" width="90%">
+  <img src="DataBaseProject1/Images/HashedPassword.PNG" width="90%">
