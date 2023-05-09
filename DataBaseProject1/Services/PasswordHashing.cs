@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Drawing;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -13,7 +14,6 @@ namespace DataBaseProject1.Services
     {
         private static Random random = new Random();
         Connections connections = new Connections();
-
 
         private const string chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ12345678901234567890!#%^&$*-=_+,.?/<>";
 
@@ -52,7 +52,22 @@ namespace DataBaseProject1.Services
                     if (comparisonResult == "1")
                     {
                         result = true;
+
+                        #region
+                        SignIn.instance.passwordInfo.Visible = true;
+                        SignIn.instance.outsidePassword.BackColor = Color.FromArgb(255, 255, 255);
+                        SignIn.instance.outsidePassword.ForeColor = Color.FromArgb(0, 0, 0);
+                        #endregion
                     }
+
+                    #region
+                    else
+                    {
+                        SignIn.instance.passwordInfo.Visible = true;
+                        SignIn.instance.outsidePassword.BackColor = Color.FromArgb(192, 0, 0);
+                        SignIn.instance.outsidePassword.ForeColor = Color.FromArgb(255, 255, 255);
+                    }
+                    #endregion
                 }
 
                 catch (Exception ex)

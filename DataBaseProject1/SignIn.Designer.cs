@@ -82,11 +82,11 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Oswald", 20.25F);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F);
             this.label1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label1.Location = new System.Drawing.Point(147, 79);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(97, 40);
+            this.label1.Size = new System.Drawing.Size(116, 31);
             this.label1.TabIndex = 4;
             this.label1.Text = "SIGN IN";
             // 
@@ -240,8 +240,6 @@
         #endregion
 
         private System.Windows.Forms.Button loginButton;
-        private System.Windows.Forms.TextBox outsideUsername;
-        private System.Windows.Forms.TextBox outsidePassword;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button goToRegister;
         private System.Windows.Forms.PictureBox pictureBox1;
@@ -250,8 +248,10 @@
         private System.Windows.Forms.Label UsernameLog;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label focus;
-        private System.Windows.Forms.Label usernameInfo;
-        private System.Windows.Forms.Label passwordInfo;
+        public System.Windows.Forms.TextBox outsideUsername;
+        public System.Windows.Forms.TextBox outsidePassword;
+        public System.Windows.Forms.Label usernameInfo;
+        public System.Windows.Forms.Label passwordInfo;
     }
 }
 

@@ -1,13 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Data.SqlClient;
 using DataBaseProject1.Data_Base;
 using DataBaseProject1.Services;
 
@@ -16,13 +9,12 @@ namespace DataBaseProject1
     public partial class SignIn : Form
     {
         public static string Username;
-
-        Connections connections = new Connections();
-        
+        public static SignIn instance;
 
         public SignIn()
         {
             InitializeComponent();
+            instance = this;
             showPassword.Visible = true;
             hidePassword.Visible = false;
             outsidePassword.UseSystemPasswordChar = true;
@@ -42,13 +34,6 @@ namespace DataBaseProject1
                     this.Hide();
                     LoggedIn loggedIn = new LoggedIn();
                     loggedIn.Show();
-                }
-
-                else
-                {
-                    usernameInfo.Visible = true;
-                    outsideUsername.BackColor = Color.FromArgb(192, 0, 0);
-                    outsideUsername.ForeColor = Color.FromArgb(255, 255, 255);
                 }
             }
 

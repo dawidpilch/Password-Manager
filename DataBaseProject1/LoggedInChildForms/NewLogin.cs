@@ -13,7 +13,6 @@ namespace DataBaseProject1.LoggedInChildForms
 {
     public partial class NewLogin : Form
     {
-        LoggedIn loggedIn = new LoggedIn();
         SecureData secureData = new SecureData();
         public static NewLogin instance;
 

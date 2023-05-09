@@ -2,9 +2,11 @@
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace DataBaseProject1.Services
 {
@@ -75,7 +77,21 @@ namespace DataBaseProject1.Services
                     if (queryResult == "1")
                     {
                         result = true;
+                        #region Design
+                        SignIn.instance.usernameInfo.Visible = false;
+                        SignIn.instance.outsideUsername.BackColor = Color.FromArgb(255, 255, 255);
+                        SignIn.instance.outsideUsername.ForeColor = Color.FromArgb(0, 0, 0);
+                        #endregion
                     }
+
+                    #region Design
+                    else
+                    {
+                        SignIn.instance.usernameInfo.Visible = true;
+                        SignIn.instance.outsideUsername.BackColor = Color.FromArgb(192, 0, 0);
+                        SignIn.instance.outsideUsername.ForeColor = Color.FromArgb(255, 255, 255);
+                    }
+                    #endregion
                 }
 
                 catch (Exception ex)
