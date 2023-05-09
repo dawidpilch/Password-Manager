@@ -47,7 +47,6 @@ namespace DataBaseProject1.Services
                 {
                     connection.Open();
                     string comparisonResult = compare.ExecuteScalar().ToString();
-                    System.Windows.Forms.MessageBox.Show(comparisonResult);
 
                     if (comparisonResult == "1")
                     {
