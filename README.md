@@ -1,5 +1,5 @@
 # About the Password Manager Project
-Started the project back in the february of 2023, after finishing some basic C# courses.
+Started the project back in the february 2023, after finishing some basic C# courses.
 The project is not yet finished and is lacking few important functionalities. At the moment I am focused on refactoring my old code and trying to 
 implement new things that I am learning every day.
 
