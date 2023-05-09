@@ -23,10 +23,10 @@ I've gained.
  - Used the SQL with C# for the first time,
  - Still learning a lot of interesting things that I will definetly use in the future.
 
-### Signing In
+### Signing in
 <img src="DataBaseProject1/Images/SignIn.PNG">
 
-### Registration
+### Registration and data validation
 <div style="display: flex">
   <img src="DataBaseProject1/Images/Register1.PNG" width="45%">
   <img src="DataBaseProject1/Images/Register.PNG" width="45%">
@@ -35,6 +35,6 @@ I've gained.
  ### View when you are logged in
  <img src="DataBaseProject1/Images/LoggedIn.png" width="70%">
  
- ### Hashed Passwords and salt
+ ### Hashed passwords and salt
   <img src="DataBaseProject1/Images/HashingFunction.PNG" width="70%">
   <img src="DataBaseProject1/Images/HashedPassword.PNG" width="70%">
