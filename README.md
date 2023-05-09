@@ -3,6 +3,9 @@ Started the project back in the february 2023, after finishing some basic C# cou
 The project is not yet finished and is lacking few important functionalities. At the moment I am focused on refactoring my old code and trying to 
 implement new things that I am learning every day.
 
+Password Manager is a vault for a lot of sensitive data so I wanted it to be safe. That's I've implemented the password hashing system. In the future I'd like to
+add more security features to my manager.
+
 Project contains this features at the moment:
 - Creating a new account,
 - Logging in with the existing account,
