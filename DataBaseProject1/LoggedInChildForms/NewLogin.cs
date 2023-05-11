@@ -7,7 +7,6 @@ namespace DataBaseProject1.LoggedInChildForms
 {
     public partial class NewLogin : Form
     {
-        SecureData secureData = new SecureData();
         public static NewLogin instance;
 
         public int isLoginFavorite = 0;
@@ -54,50 +53,50 @@ namespace DataBaseProject1.LoggedInChildForms
                 {
                     using (SqlConnection conn = new SqlConnection(@"Data Source=DESKTOP-JBI31J2;Initial Catalog=DataBaseProject1;Integrated Security=True;"))
                     {
-                        conn.Open();
-                        SqlCommand newLoginToDatabase = new SqlCommand
-                            ("INSERT INTO [DataBaseProject1].[dbo].[USERS_LOGINS] ([USER_ID], [LOGIN_NAME], [LOGIN_USERNAME], [LOGIN_PASSWORD], " +
-                            "[LOGIN_AUTHENTICATOR_KEY], [LOGIN_URI], [LOGIN_FAVORITE], [LOGIN_REPROMPT], [LOGIN_NOTES]) VALUES ('" +
+                        //conn.Open();
+                        //SqlCommand newLoginToDatabase = new SqlCommand
+                        //    ("INSERT INTO [DataBaseProject1].[dbo].[USERS_LOGINS] ([USER_ID], [LOGIN_NAME], [LOGIN_USERNAME], [LOGIN_PASSWORD], " +
+                        //    "[LOGIN_AUTHENTICATOR_KEY], [LOGIN_URI], [LOGIN_FAVORITE], [LOGIN_REPROMPT], [LOGIN_NOTES]) VALUES ('" +
 
-                            //USER_ID
-                            LoggedIn.instance.CurrentUserID + "', '" +
+                        //    //USER_ID
+                        //    LoggedIn.instance.CurrentUserID + "', '" +
 
-                            //LOGIN_NAME
-                            secureData.convertQuotes(newLoginName.Text) + "', '" +
+                        //    //LOGIN_NAME
+                        //    secureData.convertQuotes(newLoginName.Text) + "', '" +
 
-                            //LOGIN_USERNAME
-                            secureData.convertQuotes(newLoginUsername.Text) + "', '" +
+                        //    //LOGIN_USERNAME
+                        //    secureData.convertQuotes(newLoginUsername.Text) + "', '" +
 
-                            //LOGIN_PASSWORD
-                            secureData.convertQuotes(newLoginPassword.Text) + "', '" +
+                        //    //LOGIN_PASSWORD
+                        //    secureData.convertQuotes(newLoginPassword.Text) + "', '" +
 
-                            //LOGIN_AUTHENTICATOR_KEY
-                            secureData.convertQuotes(newLoginTOTP.Text) + "', '" +
+                        //    //LOGIN_AUTHENTICATOR_KEY
+                        //    secureData.convertQuotes(newLoginTOTP.Text) + "', '" +
 
-                            //LOGIN_URI
-                            secureData.convertQuotes(newLoginURI.Text) + "', '" +
+                        //    //LOGIN_URI
+                        //    secureData.convertQuotes(newLoginURI.Text) + "', '" +
 
-                            //LOGIN_FAVORITE
-                            @isLoginFavorite + "', '" +
+                        //    //LOGIN_FAVORITE
+                        //    @isLoginFavorite + "', '" +
 
-                            //LOGIN_REPROMPT
-                            @rePrompt + "', '" +
+                        //    //LOGIN_REPROMPT
+                        //    @rePrompt + "', '" +
 
-                            //LOGIN_NOTES
-                            secureData.convertQuotes(newLoginNotes.Text) + "');", conn);
+                        //    //LOGIN_NOTES
+                        //    secureData.convertQuotes(newLoginNotes.Text) + "');", conn);
 
-                        string newLoginToDatabaseResult = newLoginToDatabase.ExecuteNonQuery().ToString();
-                        conn.Close();
+                        //string newLoginToDatabaseResult = newLoginToDatabase.ExecuteNonQuery().ToString();
+                        //conn.Close();
 
-                        if (newLoginToDatabaseResult != "0")
-                        {
-                            MessageBox.Show("Success!");
-                        }
+                        //if (newLoginToDatabaseResult != "0")
+                        //{
+                        //    MessageBox.Show("Success!");
+                        //}
 
-                        else
-                        {
-                            MessageBox.Show("Zjebałeś coś");
-                        }
+                        //else
+                        //{
+                        //    MessageBox.Show("Zjebałeś coś");
+                        //}
                     }
                 }
 
