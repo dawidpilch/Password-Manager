@@ -93,16 +93,12 @@ namespace DataBaseProject1
                     EmailNotTaken = true;
                 }
             }
-
-            
             #endregion
 
 
             #region //======= Password TextBox =======//
-            bool passwordCharsAllowed = passwordRegister.Text.All(c => SecureData.chars.Contains(c));
 
-
-            if (passwordRegister.Text.Length < 8 || passwordCharsAllowed == false)
+            if (passwordRegister.Text.Length < 8)
             {
                 passwordRegister.BackColor = Color.FromArgb(192, 0, 0);
                 passwordRegister.ForeColor = Color.FromArgb(255, 255, 255);
@@ -125,9 +121,9 @@ namespace DataBaseProject1
                 passwordInfo.Visible = true;
             }
 
-            if (PasswordAccepted == true)
+            if (PasswordAccepted)
             {
-                bool passwordConfirmed = passwordRegister.Text.Equals(passwordRegisterConfirmation.Text);
+                
 
                 if (string.IsNullOrEmpty(passwordRegisterConfirmation.Text))
                 {
@@ -137,19 +133,19 @@ namespace DataBaseProject1
                     passwordInfo.Text = "Confirm your password.";
                 }
 
-                else if (passwordConfirmed == true)
-                {
-                    passwordRegisterConfirmation.BackColor = Color.FromArgb(255, 255, 255);
-                    passwordRegisterConfirmation.ForeColor = Color.FromArgb(0, 0, 0);
-                    passwordInfo.Visible = false;
-                }
-
-                else
+                else if (!passwordRegister.Text.Equals(passwordRegisterConfirmation.Text))
                 {
                     passwordRegisterConfirmation.BackColor = Color.FromArgb(192, 0, 0);
                     passwordRegisterConfirmation.ForeColor = Color.FromArgb(255, 255, 255);
                     passwordInfo.ForeColor = Color.FromArgb(192, 0, 0);
                     passwordInfo.Text = "Those passwords didn't match. Try again.";
+                }
+
+                else
+                {
+                    passwordRegisterConfirmation.BackColor = Color.FromArgb(255, 255, 255);
+                    passwordRegisterConfirmation.ForeColor = Color.FromArgb(0, 0, 0);
+                    passwordInfo.Visible = false;
                 }
             }
             #endregion
