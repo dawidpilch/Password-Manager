@@ -151,9 +151,9 @@
             this.UsernameLog.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.UsernameLog.Location = new System.Drawing.Point(85, 146);
             this.UsernameLog.Name = "UsernameLog";
-            this.UsernameLog.Size = new System.Drawing.Size(60, 16);
+            this.UsernameLog.Size = new System.Drawing.Size(36, 16);
             this.UsernameLog.TabIndex = 22;
-            this.UsernameLog.Text = "Username";
+            this.UsernameLog.Text = "Email";
             // 
             // label2
             // 
@@ -184,9 +184,9 @@
             this.usernameInfo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.usernameInfo.Location = new System.Drawing.Point(85, 189);
             this.usernameInfo.Name = "usernameInfo";
-            this.usernameInfo.Size = new System.Drawing.Size(88, 13);
+            this.usernameInfo.Size = new System.Drawing.Size(100, 13);
             this.usernameInfo.TabIndex = 27;
-            this.usernameInfo.Text = "Invalid username!";
+            this.usernameInfo.Text = "Invalid email adress!";
             this.usernameInfo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.usernameInfo.Visible = false;
             // 

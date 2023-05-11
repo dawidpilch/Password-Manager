@@ -8,7 +8,7 @@ namespace DataBaseProject1
 {
     public partial class SignIn : Form
     {
-        public static string Username;
+        public static string Email;
         public static SignIn instance;
 
         public SignIn()
@@ -30,7 +30,7 @@ namespace DataBaseProject1
                 if (await userServices.Login(outsideUsername.Text, outsidePassword.Text))
                 {
                     passwordInfo.Visible = false;
-                    Username = outsideUsername.Text;
+                    Email = outsideUsername.Text;
                     this.Hide();
                     LoggedIn loggedIn = new LoggedIn();
                     loggedIn.Show();

@@ -29,9 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Register));
-            this.Username = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.usernameRegister = new System.Windows.Forms.TextBox();
             this.passwordRegister = new System.Windows.Forms.TextBox();
             this.buttonRegister = new System.Windows.Forms.Button();
             this.goToLogin = new System.Windows.Forms.Button();
@@ -44,7 +42,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.passwordInfo = new System.Windows.Forms.Label();
             this.phoneInfo = new System.Windows.Forms.Label();
-            this.usernameInfo = new System.Windows.Forms.Label();
             this.labelfocus = new System.Windows.Forms.Label();
             this.emailInfo = new System.Windows.Forms.Label();
             this.passwordRegisterConfirmation = new System.Windows.Forms.TextBox();
@@ -56,44 +53,23 @@
             ((System.ComponentModel.ISupportInitialize)(this.showPassword)).BeginInit();
             this.SuspendLayout();
             // 
-            // Username
-            // 
-            this.Username.AutoSize = true;
-            this.Username.Font = new System.Drawing.Font("Microsoft Tai Le", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Username.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.Username.Location = new System.Drawing.Point(82, 74);
-            this.Username.Name = "Username";
-            this.Username.Size = new System.Drawing.Size(60, 16);
-            this.Username.TabIndex = 0;
-            this.Username.Text = "Username";
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Tai Le", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label2.Location = new System.Drawing.Point(82, 278);
+            this.label2.Location = new System.Drawing.Point(73, 213);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(57, 16);
             this.label2.TabIndex = 1;
             this.label2.Text = "Password";
             // 
-            // usernameRegister
-            // 
-            this.usernameRegister.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.usernameRegister.Font = new System.Drawing.Font("Microsoft Tai Le", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.usernameRegister.ForeColor = System.Drawing.SystemColors.MenuText;
-            this.usernameRegister.Location = new System.Drawing.Point(85, 90);
-            this.usernameRegister.Name = "usernameRegister";
-            this.usernameRegister.Size = new System.Drawing.Size(234, 21);
-            this.usernameRegister.TabIndex = 2;
-            // 
             // passwordRegister
             // 
             this.passwordRegister.Font = new System.Drawing.Font("Microsoft Tai Le", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.passwordRegister.Location = new System.Drawing.Point(85, 297);
+            this.passwordRegister.Location = new System.Drawing.Point(76, 232);
             this.passwordRegister.Name = "passwordRegister";
-            this.passwordRegister.Size = new System.Drawing.Size(114, 21);
+            this.passwordRegister.Size = new System.Drawing.Size(234, 21);
             this.passwordRegister.TabIndex = 3;
             this.passwordRegister.UseSystemPasswordChar = true;
             // 
@@ -135,7 +111,7 @@
             // phoneRegister
             // 
             this.phoneRegister.Font = new System.Drawing.Font("Microsoft Tai Le", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.phoneRegister.Location = new System.Drawing.Point(85, 226);
+            this.phoneRegister.Location = new System.Drawing.Point(76, 168);
             this.phoneRegister.Name = "phoneRegister";
             this.phoneRegister.Size = new System.Drawing.Size(234, 21);
             this.phoneRegister.TabIndex = 5;
@@ -143,7 +119,7 @@
             // emailRegister
             // 
             this.emailRegister.Font = new System.Drawing.Font("Microsoft Tai Le", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.emailRegister.Location = new System.Drawing.Point(85, 158);
+            this.emailRegister.Location = new System.Drawing.Point(76, 104);
             this.emailRegister.Name = "emailRegister";
             this.emailRegister.Size = new System.Drawing.Size(234, 21);
             this.emailRegister.TabIndex = 4;
@@ -153,7 +129,7 @@
             this.phhone.AutoSize = true;
             this.phhone.Font = new System.Drawing.Font("Microsoft Tai Le", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.phhone.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.phhone.Location = new System.Drawing.Point(82, 210);
+            this.phhone.Location = new System.Drawing.Point(73, 152);
             this.phhone.Name = "phhone";
             this.phhone.Size = new System.Drawing.Size(88, 16);
             this.phhone.TabIndex = 14;
@@ -164,7 +140,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Tai Le", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label4.Location = new System.Drawing.Point(82, 142);
+            this.label4.Location = new System.Drawing.Point(73, 88);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(79, 16);
             this.label4.TabIndex = 13;
@@ -176,7 +152,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label5.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label5.Location = new System.Drawing.Point(88, 23);
+            this.label5.Location = new System.Drawing.Point(85, 32);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(220, 31);
             this.label5.TabIndex = 17;
@@ -213,7 +189,7 @@
             this.passwordInfo.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.passwordInfo.Font = new System.Drawing.Font("Microsoft Tai Le", 7F, System.Drawing.FontStyle.Bold);
             this.passwordInfo.ForeColor = System.Drawing.Color.DarkGray;
-            this.passwordInfo.Location = new System.Drawing.Point(82, 321);
+            this.passwordInfo.Location = new System.Drawing.Point(73, 320);
             this.passwordInfo.Name = "passwordInfo";
             this.passwordInfo.Size = new System.Drawing.Size(226, 26);
             this.passwordInfo.TabIndex = 21;
@@ -227,27 +203,13 @@
             this.phoneInfo.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.phoneInfo.Font = new System.Drawing.Font("Microsoft Tai Le", 7F, System.Drawing.FontStyle.Bold);
             this.phoneInfo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.phoneInfo.Location = new System.Drawing.Point(82, 250);
+            this.phoneInfo.Location = new System.Drawing.Point(73, 192);
             this.phoneInfo.Name = "phoneInfo";
             this.phoneInfo.Size = new System.Drawing.Size(112, 13);
             this.phoneInfo.TabIndex = 23;
             this.phoneInfo.Text = "Invalid phone number!";
             this.phoneInfo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.phoneInfo.Visible = false;
-            // 
-            // usernameInfo
-            // 
-            this.usernameInfo.AutoSize = true;
-            this.usernameInfo.BackColor = System.Drawing.Color.White;
-            this.usernameInfo.Cursor = System.Windows.Forms.Cursors.Default;
-            this.usernameInfo.Font = new System.Drawing.Font("Microsoft Tai Le", 7F, System.Drawing.FontStyle.Bold);
-            this.usernameInfo.ForeColor = System.Drawing.Color.DarkGray;
-            this.usernameInfo.Location = new System.Drawing.Point(82, 114);
-            this.usernameInfo.Name = "usernameInfo";
-            this.usernameInfo.Size = new System.Drawing.Size(160, 13);
-            this.usernameInfo.TabIndex = 24;
-            this.usernameInfo.Text = "You can use letters and numbers.";
-            this.usernameInfo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // labelfocus
             // 
@@ -265,7 +227,7 @@
             this.emailInfo.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.emailInfo.Font = new System.Drawing.Font("Microsoft Tai Le", 7F, System.Drawing.FontStyle.Bold);
             this.emailInfo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.emailInfo.Location = new System.Drawing.Point(82, 182);
+            this.emailInfo.Location = new System.Drawing.Point(73, 128);
             this.emailInfo.Name = "emailInfo";
             this.emailInfo.Size = new System.Drawing.Size(74, 13);
             this.emailInfo.TabIndex = 26;
@@ -276,9 +238,9 @@
             // passwordRegisterConfirmation
             // 
             this.passwordRegisterConfirmation.Font = new System.Drawing.Font("Microsoft Tai Le", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.passwordRegisterConfirmation.Location = new System.Drawing.Point(205, 297);
+            this.passwordRegisterConfirmation.Location = new System.Drawing.Point(76, 296);
             this.passwordRegisterConfirmation.Name = "passwordRegisterConfirmation";
-            this.passwordRegisterConfirmation.Size = new System.Drawing.Size(114, 21);
+            this.passwordRegisterConfirmation.Size = new System.Drawing.Size(234, 21);
             this.passwordRegisterConfirmation.TabIndex = 32;
             this.passwordRegisterConfirmation.UseSystemPasswordChar = true;
             // 
@@ -287,17 +249,17 @@
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Tai Le", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label8.Location = new System.Drawing.Point(202, 278);
+            this.label8.Location = new System.Drawing.Point(73, 277);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(51, 16);
+            this.label8.Size = new System.Drawing.Size(104, 16);
             this.label8.TabIndex = 33;
-            this.label8.Text = "Confirm";
+            this.label8.Text = "Confirm password";
             // 
             // hidePassword
             // 
             this.hidePassword.Cursor = System.Windows.Forms.Cursors.Hand;
             this.hidePassword.Image = ((System.Drawing.Image)(resources.GetObject("hidePassword.Image")));
-            this.hidePassword.Location = new System.Drawing.Point(331, 293);
+            this.hidePassword.Location = new System.Drawing.Point(320, 228);
             this.hidePassword.Name = "hidePassword";
             this.hidePassword.Size = new System.Drawing.Size(31, 30);
             this.hidePassword.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -310,7 +272,7 @@
             // 
             this.showPassword.Cursor = System.Windows.Forms.Cursors.Hand;
             this.showPassword.Image = ((System.Drawing.Image)(resources.GetObject("showPassword.Image")));
-            this.showPassword.Location = new System.Drawing.Point(331, 293);
+            this.showPassword.Location = new System.Drawing.Point(320, 228);
             this.showPassword.Name = "showPassword";
             this.showPassword.Size = new System.Drawing.Size(31, 30);
             this.showPassword.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -344,9 +306,6 @@
             this.Controls.Add(this.goToLogin);
             this.Controls.Add(this.buttonRegister);
             this.Controls.Add(this.passwordRegister);
-            this.Controls.Add(this.usernameRegister);
-            this.Controls.Add(this.Username);
-            this.Controls.Add(this.usernameInfo);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.labelfocus);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -366,10 +325,7 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Label Username;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox usernameRegister;
         private System.Windows.Forms.TextBox passwordRegister;
         private System.Windows.Forms.Button buttonRegister;
         private System.Windows.Forms.Button goToLogin;
@@ -382,7 +338,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label passwordInfo;
         private System.Windows.Forms.Label phoneInfo;
-        private System.Windows.Forms.Label usernameInfo;
         private System.Windows.Forms.Label labelfocus;
         private System.Windows.Forms.Label emailInfo;
         private System.Windows.Forms.TextBox passwordRegisterConfirmation;

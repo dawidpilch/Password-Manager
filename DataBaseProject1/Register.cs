@@ -11,22 +11,19 @@ using System.Windows.Forms;
 using System.Security.Cryptography;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 using DataBaseProject1.Data_Base;
+using DataBaseProject1.Services;
 
 namespace DataBaseProject1
 {
     public partial class Register : Form
     {
+        User userServices = new User();
         Connections connections= new Connections();
 
-        public static string NewID = "987654321";
-
-        public static bool UsernameAccepted;
-        public static bool UsernameAvailable;
-        public static bool PasswordAccepted;
-        public static bool PhoneNumberAccepted;
-        public static bool EmailAccepted;
-        public static bool UniqueUsername;
-        public static bool UniqueEmail;
+        private static bool PasswordAccepted;
+        private static bool PhoneNumberAccepted;
+        private static bool EmailIsValid;
+        private static bool EmailNotTaken;
 
         public Register()
         {
@@ -47,67 +44,57 @@ namespace DataBaseProject1
             
         }
         
-        private void buttonRegister_Click(object sender, EventArgs e)
+        private async void buttonRegister_Click(object sender, EventArgs e)
         {
-            
-            #region //======= Username TextBox =======//
-            usernameInfo.Text = "You can use letters and numbers.\r\n";
-            if (usernameRegister.Text.Length < 6 || usernameRegister.Text.Length > 30)
+            #region //======= Email Adress TextBox =======//
+            if (string.IsNullOrEmpty(emailRegister.Text))
             {
-                usernameRegister.BackColor = Color.FromArgb(192, 0, 0);
-                usernameRegister.ForeColor = Color.FromArgb(255, 255, 255);
-                usernameInfo.Text = "Your Username must be between 6 and 30 \r\ncharacters long.\r\n";
-                usernameInfo.ForeColor = Color.FromArgb(192, 0, 0);
-                UsernameAccepted = false;
+                emailRegister.BackColor = Color.FromArgb(192, 0, 0);
+                emailRegister.ForeColor = Color.FromArgb(255, 255, 255);
+                emailInfo.Text = "Enter an email";
+                emailInfo.Visible = true;
+                EmailIsValid = false;
             }
-            
-            else if (!usernameRegister.Text.All(Char.IsLetterOrDigit))
+
+            else if (!emailRegister.Text.Contains("@"))
             {
-                usernameRegister.BackColor = Color.FromArgb(192, 0, 0);
-                usernameRegister.ForeColor = Color.FromArgb(255, 255, 255);
-                usernameInfo.Text = "Only letters and numbers are allowed!\r\n";
-                usernameInfo.ForeColor = Color.FromArgb(192, 0, 0);
-                UsernameAccepted = false;
+                emailRegister.BackColor = Color.FromArgb(192, 0, 0);
+                emailRegister.ForeColor = Color.FromArgb(255, 255, 255);
+                emailInfo.Text = "Invalid email!";
+                emailInfo.Visible = true;
+                EmailIsValid = false;
             }
 
             else
             {
-                usernameRegister.BackColor = Color.FromArgb(255, 255, 255);
-                usernameRegister.ForeColor = Color.FromArgb(0, 0, 0);
-                UsernameAccepted = true;
-                usernameInfo.Text = "You can use letters and numbers.\r\n";
-                usernameInfo.ForeColor = Color.DarkGray;
+                emailRegister.BackColor = Color.FromArgb(255, 255, 255);
+                emailRegister.ForeColor = Color.FromArgb(0, 0, 0);
+                emailInfo.Visible = false;
+                EmailIsValid = true;
             }
 
-            //Checking if Username is not already taken
-            if (UsernameAccepted == true)
+            //Checking if email is already not taken
+            if (EmailIsValid)
             {
-                using (SqlConnection conn = new SqlConnection(connections.ConnectionString))
+                if (!await userServices.IsEmailAvailable(emailRegister.Text))
                 {
-                    conn.Open();
-                    SqlCommand cmdUsernameCheck = new SqlCommand("Select Count(*) From USERS where USERNAME='" + usernameRegister.Text + "' COLLATE SQL_Latin1_General_CP1_CS_AS", conn);
-                    string cmdUsernameResult = cmdUsernameCheck.ExecuteScalar().ToString();
+                    EmailNotTaken = false;
+                    emailInfo.Visible = true;
+                    emailInfo.Text = "This email is already connected to an account!\r\n";
+                    emailRegister.BackColor = Color.FromArgb(192, 0, 0);
+                    emailRegister.ForeColor = Color.FromArgb(255, 255, 255);
+                }
 
-                    if (cmdUsernameResult == "0")
-                    {
-                        UniqueUsername = true;
-                        usernameInfo.Text = "You can use letters and numbers.\r\n";
-                        usernameInfo.ForeColor = Color.DarkGray;
-                        usernameRegister.BackColor = Color.FromArgb(255, 255, 255);
-                        usernameRegister.ForeColor = Color.FromArgb(0, 0, 0);
-                    }
-
-                    else
-                    {
-                        UniqueUsername = false;
-                        usernameInfo.Text = "Username already taken!\r\n";
-                        usernameInfo.ForeColor = Color.FromArgb(192, 0, 0);
-                        usernameRegister.BackColor = Color.FromArgb(192, 0, 0);
-                        usernameRegister.ForeColor = Color.FromArgb(255, 255, 255);
-                    }
-                    conn.Close();
+                else
+                {
+                    emailRegister.BackColor = Color.FromArgb(255, 255, 255);
+                    emailRegister.ForeColor = Color.FromArgb(0, 0, 0);
+                    emailInfo.Visible = false;
+                    EmailNotTaken = true;
                 }
             }
+
+            
             #endregion
 
 
@@ -168,67 +155,10 @@ namespace DataBaseProject1
             #endregion
 
 
-            #region //======= Email Adress TextBox =======//
-            if (string.IsNullOrEmpty(emailRegister.Text))
-            {
-                emailRegister.BackColor = Color.FromArgb(192, 0, 0);
-                emailRegister.ForeColor = Color.FromArgb(255, 255, 255);
-                emailInfo.Text = "Invalid E-Mail!";
-                emailInfo.Visible = true;
-                EmailAccepted = false;
-            }
-
-            else if (!emailRegister.Text.Contains("@"))
-            {
-                emailRegister.BackColor = Color.FromArgb(192, 0, 0);
-                emailRegister.ForeColor = Color.FromArgb(255, 255, 255);
-                emailInfo.Text = "Invalid E-Mail!";
-                emailInfo.Visible = true;
-                EmailAccepted = false;
-            }
-
-            else
-            {
-                emailRegister.BackColor = Color.FromArgb(255, 255, 255);
-                emailRegister.ForeColor = Color.FromArgb(0, 0, 0);
-                emailInfo.Visible = false;
-                EmailAccepted = true;
-            }
-
-            //Checking if E-Mail is no already in use (EMails are not case sensitive!)
-            if (EmailAccepted == true)
-            {
-                using (SqlConnection conn = new SqlConnection(connections.ConnectionString))
-                {
-                    conn.Open();
-                    SqlCommand cmdEmailCheck = new SqlCommand("Select Count(*) From USERS where EMAIL='" + emailRegister.Text + "'", conn);
-                    string cmdEmailResult = cmdEmailCheck.ExecuteScalar().ToString();
-
-                    if (cmdEmailResult == "0")
-                    {
-                        UniqueEmail = true;
-                        emailInfo.Visible = false;
-                    }
-
-                    else
-                    {
-                        UniqueEmail = false;
-                        emailInfo.Visible = true;
-                        emailInfo.Text = "This email is already connected to an account!\r\n";
-                        emailRegister.BackColor = Color.FromArgb(192, 0, 0);
-                        emailRegister.ForeColor = Color.FromArgb(255, 255, 255);
-                    }
-                    conn.Close();
-                }
-            }
-
-            #endregion
-
-
             #region //======= Phone Number TextBox =======//
-            PhoneNumberAccepted = IsDigitsOnly(phoneRegister.Text);
+            PhoneNumberAccepted = DataValidation.IsDigitsOnly(phoneRegister.Text);
 
-            if (PhoneNumberAccepted == false)
+            if (!PhoneNumberAccepted)
             {
                 phoneRegister.BackColor = Color.FromArgb(192, 0, 0);
                 phoneRegister.ForeColor = Color.FromArgb(255, 255, 255);
@@ -244,68 +174,65 @@ namespace DataBaseProject1
             #endregion
 
 
+            if (PasswordAccepted && PasswordAccepted && EmailNotTaken && PhoneNumberAccepted)
+            {
+                if (await userServices.CreateNewAccount(passwordRegister.Text, emailRegister.Text, phoneRegister.Text)){
+                    MessageBox.Show("Registered Successfully!");
+                }
+            }
+
+
             //Checking if all Required Fields are filled and accepted. If not, the Connection with a DB won't be established
             //and the data will not land in the DB.
-            if (UsernameAccepted == true && UniqueUsername == true && PasswordAccepted == true && EmailAccepted == true && PhoneNumberAccepted == true)
-            {
-                using (SqlConnection conn = new SqlConnection(connections.ConnectionString))
-                {
-                    conn.Open();
-                    SqlCommand command = new SqlCommand();
+            //if (UsernameAccepted == true && UniqueUsername == true && PasswordAccepted == true && EmailAccepted == true && PhoneNumberAccepted == true)
+            //{
+            //    using (SqlConnection conn = new SqlConnection(connections.ConnectionString))
+            //    {
+            //        conn.Open();
+            //        SqlCommand command = new SqlCommand();
 
-                    //Salts for Username and Password
-                    string passwordSalt = SecureData.CreateSalt(8);
-                    byte[] passwordSaltByte = Encoding.ASCII.GetBytes(passwordSalt);
+            //        //Salts for Username and Password
+            //        string passwordSalt = SecureData.CreateSalt(8);
+            //        byte[] passwordSaltByte = Encoding.ASCII.GetBytes(passwordSalt);
 
-                    //Inserting into DataBase
-                    command = new SqlCommand
-                        ("Insert into USERS (USERNAME, PASSWORD, EMAIL, PHONENUMBER, DATE, PASSWORDSALT) values ('" +
+            //        //Inserting into DataBase
+            //        command = new SqlCommand
+            //            ("Insert into USERS (USERNAME, PASSWORD, EMAIL, PHONENUMBER, DATE, PASSWORDSALT) values ('" +
 
-                        //USERNAME
-                        usernameRegister.Text + "', '" +
+            //            //USERNAME
+            //            usernameRegister.Text + "', '" +
 
-                        //PASSWORD
-                        SecureData.HashPassword(passwordRegister.Text, passwordSaltByte) + "', '" +
+            //            //PASSWORD
+            //            SecureData.HashPassword(passwordRegister.Text, passwordSaltByte) + "', '" +
 
-                        //EMAIL
-                        emailRegister.Text + "', '" +
+            //            //EMAIL
+            //            emailRegister.Text + "', '" +
 
-                        //PHONENUMBER
-                        phoneRegister.Text + "', '" +
+            //            //PHONENUMBER
+            //            phoneRegister.Text + "', '" +
 
-                        //REGISTER DATE
-                        DateTime.UtcNow.ToString("yyyy-MM-dd") + "', '" +
+            //            //REGISTER DATE
+            //            DateTime.UtcNow.ToString("yyyy-MM-dd") + "', '" +
 
-                        //SALT
-                        passwordSalt + "')", conn);
+            //            //SALT
+            //            passwordSalt + "')", conn);
 
-                    int rowsAffected = command.ExecuteNonQuery();
+            //        int rowsAffected = command.ExecuteNonQuery();
 
-                    if (rowsAffected == 1)
-                    {
-                        MessageBox.Show("Registered Successfully!");
-                    }
-                    conn.Close();
-                }
-            }
+            //        if (rowsAffected == 1)
+            //        {
+            //            MessageBox.Show("Registered Successfully!");
+            //        }
+            //        conn.Close();
+            //    }
+            //}
 
-            else
-            {
-                MessageBox.Show("Missing the Required Data!");
-            }
+            //else
+            //{
+            //    MessageBox.Show("Missing the Required Data!");
+            //}
         }
 
-        bool IsDigitsOnly(string str)
-        {
-            foreach (char c in str)
-            {
-                if (c < '0' || c > '9')
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
 
         private void showPassword_Click(object sender, EventArgs e)
         {

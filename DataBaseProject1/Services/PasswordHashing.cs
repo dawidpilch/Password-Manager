@@ -21,6 +21,7 @@ namespace DataBaseProject1.Services
         {
             return new string(Enumerable.Repeat(chars, stringLength).Select(s => s[random.Next(s.Length)]).ToArray());
         }
+
         public async Task<string> HashPassword(string password, byte[] salt, int ittr = 10000)
         {
             using (var rfc2898 = new Rfc2898DeriveBytes(password, salt, ittr))
@@ -37,10 +38,10 @@ namespace DataBaseProject1.Services
 
             using (SqlConnection connection = new SqlConnection(connections.ConnectionString))
             {
-                string SqlQuery = "SELECT COUNT(*) PASSWORD FROM USERS WHERE USERNAME = @USERNAME AND PASSWORD = @PASSWORD COLLATE SQL_Latin1_General_CP1_CS_AS;";
+                string SqlQuery = "SELECT COUNT(*) PASSWORD FROM USERS WHERE EMAIL = @EMAIL AND PASSWORD = @PASSWORD COLLATE SQL_Latin1_General_CP1_CS_AS;";
                 SqlCommand compare = new SqlCommand(SqlQuery, connection);
 
-                compare.Parameters.Add("@USERNAME", System.Data.SqlDbType.NVarChar, 50).Value = username;
+                compare.Parameters.Add("@EMAIL", System.Data.SqlDbType.NVarChar, 100).Value = username;
                 compare.Parameters.Add("@PASSWORD", System.Data.SqlDbType.NVarChar, 200).Value = outsidePasswordHash;
 
                 try
@@ -52,14 +53,14 @@ namespace DataBaseProject1.Services
                     {
                         result = true;
 
-                        #region
+                        #region Design
                         SignIn.instance.passwordInfo.Visible = true;
                         SignIn.instance.outsidePassword.BackColor = Color.FromArgb(255, 255, 255);
                         SignIn.instance.outsidePassword.ForeColor = Color.FromArgb(0, 0, 0);
                         #endregion
                     }
 
-                    #region
+                    #region Design
                     else
                     {
                         SignIn.instance.passwordInfo.Visible = true;

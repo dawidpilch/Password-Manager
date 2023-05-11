@@ -32,8 +32,8 @@ namespace DataBaseProject1
             {
                 conn.Open();
                 SqlCommand getUserID = new SqlCommand
-                    ("SELECT ID FROM USERS WHERE USERNAME = '" 
-                    + SignIn.Username + "' COLLATE SQL_Latin1_General_CP1_CS_AS", conn);
+                    ("SELECT ID FROM USERS WHERE EMAIL = '" 
+                    + SignIn.Email + "' COLLATE SQL_Latin1_General_CP1_CS_AS", conn);
                 CurrentUserID = getUserID.ExecuteScalar().ToString();
                 conn.Close();
             }
