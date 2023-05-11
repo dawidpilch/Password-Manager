@@ -72,7 +72,7 @@
             this.identityTab.Cursor = System.Windows.Forms.Cursors.Hand;
             this.identityTab.FlatAppearance.BorderSize = 0;
             this.identityTab.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.identityTab.Font = new System.Drawing.Font("Oswald", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.identityTab.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.identityTab.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.identityTab.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.identityTab.Location = new System.Drawing.Point(3, 111);
@@ -89,7 +89,7 @@
             this.cardTab.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cardTab.FlatAppearance.BorderSize = 0;
             this.cardTab.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cardTab.Font = new System.Drawing.Font("Oswald", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cardTab.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cardTab.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.cardTab.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.cardTab.Location = new System.Drawing.Point(3, 57);
@@ -106,7 +106,7 @@
             this.loginTab.Cursor = System.Windows.Forms.Cursors.Hand;
             this.loginTab.FlatAppearance.BorderSize = 0;
             this.loginTab.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.loginTab.Font = new System.Drawing.Font("Oswald", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.loginTab.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.loginTab.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(107)))), ((int)(((byte)(107)))));
             this.loginTab.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.loginTab.Location = new System.Drawing.Point(3, 3);
@@ -182,7 +182,7 @@
             this.button4.Enabled = false;
             this.button4.FlatAppearance.BorderSize = 0;
             this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button4.Font = new System.Drawing.Font("Oswald", 8F);
+            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.button4.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.button4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button4.Location = new System.Drawing.Point(346, 12);
@@ -289,7 +289,7 @@
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.newFormHeader);
             this.Controls.Add(this.panel3);
-            this.MinimumSize = new System.Drawing.Size(1260, 720);
+            this.MinimumSize = new System.Drawing.Size(1260, 678);
             this.Name = "LoggedIn";
             this.Padding = new System.Windows.Forms.Padding(2);
             this.Text = "LoggedIn";

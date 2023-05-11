@@ -26,7 +26,6 @@ namespace DataBaseProject1
             InitializeComponent();
             instance = this;
             addNewLogin.Visible = true;
-            
 
             using (SqlConnection conn = new SqlConnection(connections.ConnectionString))
             {
@@ -45,7 +44,6 @@ namespace DataBaseProject1
 
 
         #region LoginTab
-
         private void loginTab_Click(object sender, EventArgs e)
         {
             OpenItemsListChildForm(sender);
@@ -54,7 +52,6 @@ namespace DataBaseProject1
 
 
         #region CardTab
-
         private void cardTab_Click(object sender, EventArgs e)
         {
             ActivateButton(sender);
@@ -130,6 +127,7 @@ namespace DataBaseProject1
             childForm.Show();
         }
 
+        //Clicking the Plus Button
         private void addNewLogin_Click(object sender, EventArgs e)
         {
                 OpenCreatingNewForm(new LoggedInChildForms.NewLogin(), panel3);
@@ -139,6 +137,7 @@ namespace DataBaseProject1
                 newFormType.Visible = true;
         }
 
+        //Selecting type of new item
         private void newFormType_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (newFormType.SelectedIndex == 0)
