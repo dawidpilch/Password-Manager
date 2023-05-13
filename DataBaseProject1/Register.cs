@@ -12,6 +12,7 @@ using System.Security.Cryptography;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 using DataBaseProject1.Data_Base;
 using DataBaseProject1.Services;
+using System.Threading;
 
 namespace DataBaseProject1
 {
@@ -31,7 +32,7 @@ namespace DataBaseProject1
 
         private void goToLogin_Click(object sender, EventArgs e)
         {
-            this.Hide();
+            this.Close();
             SignIn form = new SignIn();
             form.Show();
         }
@@ -171,6 +172,9 @@ namespace DataBaseProject1
             {
                 if (await User.CreateNewAccount(passwordRegister.Text, emailRegister.Text, phoneRegister.Text)){
                     MessageBox.Show("Registered Successfully!");
+                    this.Close();
+                    SignIn signIn = new SignIn();
+                    signIn.Show();
                 }
             }
         }

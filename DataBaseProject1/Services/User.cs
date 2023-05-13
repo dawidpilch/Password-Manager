@@ -125,7 +125,7 @@ namespace DataBaseProject1.Services
                 string passwordSalt = PasswordHashing.CreateSalt(8);
                 byte[] passwordSaltByte = Encoding.ASCII.GetBytes(passwordSalt);
 
-                command.Parameters.Add("@EMAIL", System.Data.SqlDbType.NVarChar, 50).Value = email;
+                command.Parameters.Add("@EMAIL", System.Data.SqlDbType.NVarChar, 50).Value = email.ToLower();
                 command.Parameters.Add("@PASSWORD", System.Data.SqlDbType.NVarChar, 200).Value = await PasswordHashing.HashPassword(password, passwordSaltByte);
                 command.Parameters.Add("@PHONENUMBER", System.Data.SqlDbType.NVarChar, 15).Value = phoneNumber;
                 command.Parameters.Add("@DATE", System.Data.SqlDbType.Date).Value = DateTime.UtcNow.ToString("yyyy-MM-dd");
