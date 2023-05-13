@@ -13,7 +13,6 @@ namespace DataBaseProject1.Services
     internal class PasswordHashing
     {
         private static Random random = new Random();
-        Connections connections = new Connections();
 
         private const string chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ12345678901234567890!#%^&$*-=_+,.?/<>";
 
@@ -36,7 +35,7 @@ namespace DataBaseProject1.Services
             bool result = false;
             string outsidePasswordHash = await HashPassword(outsidePassword, userSalt);
 
-            using (SqlConnection connection = new SqlConnection(connections.ConnectionString))
+            using (SqlConnection connection = new SqlConnection(Connections.ConnectionString))
             {
                 string SqlQuery = "SELECT COUNT(*) PASSWORD FROM USERS WHERE EMAIL = @EMAIL AND PASSWORD = @PASSWORD COLLATE SQL_Latin1_General_CP1_CS_AS;";
                 SqlCommand compare = new SqlCommand(SqlQuery, connection);

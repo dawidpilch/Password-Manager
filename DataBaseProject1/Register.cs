@@ -18,7 +18,6 @@ namespace DataBaseProject1
     public partial class Register : Form
     {
         User userServices = new User();
-        Connections connections= new Connections();
 
         private static bool PasswordAccepted;
         private static bool PhoneNumberAccepted;
@@ -170,63 +169,13 @@ namespace DataBaseProject1
             #endregion
 
 
+            //Creating new account
             if (PasswordAccepted && PasswordAccepted && EmailNotTaken && PhoneNumberAccepted)
             {
                 if (await userServices.CreateNewAccount(passwordRegister.Text, emailRegister.Text, phoneRegister.Text)){
                     MessageBox.Show("Registered Successfully!");
                 }
             }
-
-
-            //Checking if all Required Fields are filled and accepted. If not, the Connection with a DB won't be established
-            //and the data will not land in the DB.
-            //if (UsernameAccepted == true && UniqueUsername == true && PasswordAccepted == true && EmailAccepted == true && PhoneNumberAccepted == true)
-            //{
-            //    using (SqlConnection conn = new SqlConnection(connections.ConnectionString))
-            //    {
-            //        conn.Open();
-            //        SqlCommand command = new SqlCommand();
-
-            //        //Salts for Username and Password
-            //        string passwordSalt = SecureData.CreateSalt(8);
-            //        byte[] passwordSaltByte = Encoding.ASCII.GetBytes(passwordSalt);
-
-            //        //Inserting into DataBase
-            //        command = new SqlCommand
-            //            ("Insert into USERS (USERNAME, PASSWORD, EMAIL, PHONENUMBER, DATE, PASSWORDSALT) values ('" +
-
-            //            //USERNAME
-            //            usernameRegister.Text + "', '" +
-
-            //            //PASSWORD
-            //            SecureData.HashPassword(passwordRegister.Text, passwordSaltByte) + "', '" +
-
-            //            //EMAIL
-            //            emailRegister.Text + "', '" +
-
-            //            //PHONENUMBER
-            //            phoneRegister.Text + "', '" +
-
-            //            //REGISTER DATE
-            //            DateTime.UtcNow.ToString("yyyy-MM-dd") + "', '" +
-
-            //            //SALT
-            //            passwordSalt + "')", conn);
-
-            //        int rowsAffected = command.ExecuteNonQuery();
-
-            //        if (rowsAffected == 1)
-            //        {
-            //            MessageBox.Show("Registered Successfully!");
-            //        }
-            //        conn.Close();
-            //    }
-            //}
-
-            //else
-            //{
-            //    MessageBox.Show("Missing the Required Data!");
-            //}
         }
 
 

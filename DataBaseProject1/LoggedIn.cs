@@ -19,15 +19,13 @@ namespace DataBaseProject1
         public string CurrentUserID;
         public static LoggedIn instance;
 
-        Connections connections = new Connections();
-
         public LoggedIn()
         {
             InitializeComponent();
             instance = this;
             addNewLogin.Visible = true;
 
-            using (SqlConnection conn = new SqlConnection(connections.ConnectionString))
+            using (SqlConnection conn = new SqlConnection(Connections.ConnectionString))
             {
                 conn.Open();
                 SqlCommand getUserID = new SqlCommand
@@ -90,7 +88,7 @@ namespace DataBaseProject1
         private void OpenItemsListChildForm(object btnSender)
         {
             ActivateButton(btnSender);
-            using (SqlConnection conn = new SqlConnection(connections.ConnectionString))
+            using (SqlConnection conn = new SqlConnection(Connections.ConnectionString))
             {
                 //conn.Open();
                 //SqlCommand loginsCount = new SqlCommand("Select COUNT(*) LOGINS_ID FROM USERS_LOGINS WHERE USER_ID = '" + CurrentUserID + "'", conn);

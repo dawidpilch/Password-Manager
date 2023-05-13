@@ -12,9 +12,7 @@ namespace DataBaseProject1.Services
 {
     internal class User
     {
-        Connections connections = new Connections();
         PasswordHashing passwordHashing = new PasswordHashing();
-
 
         //Logging In to the app
         public async Task<bool> Login(string email, string password)
@@ -28,7 +26,7 @@ namespace DataBaseProject1.Services
 
             string loginQuery = "SELECT PASSWORDSALT FROM USERS WHERE EMAIL = @EMAIL";
 
-            using (SqlConnection connection = new SqlConnection(connections.ConnectionString))
+            using (SqlConnection connection = new SqlConnection(Connections.ConnectionString))
             {
                 
                 SqlCommand getUserSalt = new SqlCommand(loginQuery, connection);
@@ -66,7 +64,7 @@ namespace DataBaseProject1.Services
 
             string doesExistQuery = "SELECT COUNT(*) EMAIL FROM USERS WHERE EMAIL = @EMAIL";
 
-            using (SqlConnection connection = new SqlConnection(connections.ConnectionString))
+            using (SqlConnection connection = new SqlConnection(Connections.ConnectionString))
             {
                 SqlCommand doesExist = new SqlCommand(doesExistQuery, connection);
 
@@ -122,7 +120,7 @@ namespace DataBaseProject1.Services
             string SqlQuery = "INSERT INTO USERS (EMAIL, PASSWORD, PHONENUMBER, DATE, PASSWORDSALT) VALUES " +
                 "(@EMAIL, @PASSWORD, @PHONENUMBER, @DATE, @PASSWORDSALT)";
 
-            using (SqlConnection connection = new SqlConnection(connections.ConnectionString))
+            using (SqlConnection connection = new SqlConnection(Connections.ConnectionString))
             {
                 SqlCommand command = new SqlCommand(SqlQuery, connection);
 
@@ -164,7 +162,7 @@ namespace DataBaseProject1.Services
 
             string SqlQuery = "SELECT COUNT(*) FROM USERS WHERE EMAIL = @EMAIL";
 
-            using (SqlConnection connection = new SqlConnection(connections.ConnectionString))
+            using (SqlConnection connection = new SqlConnection(Connections.ConnectionString))
             {
                 SqlCommand command = new SqlCommand(SqlQuery, connection);
 
