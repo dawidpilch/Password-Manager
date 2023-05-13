@@ -155,7 +155,7 @@
             this.addNewLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.addNewLogin.Font = new System.Drawing.Font("Microsoft Uighur", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.addNewLogin.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.addNewLogin.Location = new System.Drawing.Point(8, 13);
+            this.addNewLogin.Location = new System.Drawing.Point(8, 15);
             this.addNewLogin.Name = "addNewLogin";
             this.addNewLogin.Size = new System.Drawing.Size(268, 40);
             this.addNewLogin.TabIndex = 1;
@@ -282,7 +282,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ClientSize = new System.Drawing.Size(1244, 639);
+            this.ClientSize = new System.Drawing.Size(1244, 683);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
@@ -290,8 +290,8 @@
             this.Controls.Add(this.newFormHeader);
             this.Controls.Add(this.panel3);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(1260, 678);
-            this.MinimumSize = new System.Drawing.Size(1260, 678);
+            this.MaximumSize = new System.Drawing.Size(1260, 722);
+            this.MinimumSize = new System.Drawing.Size(1260, 722);
             this.Name = "LoggedIn";
             this.Padding = new System.Windows.Forms.Padding(2);
             this.ShowIcon = false;
