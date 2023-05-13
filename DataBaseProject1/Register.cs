@@ -43,7 +43,7 @@ namespace DataBaseProject1
         
         private async void buttonRegister_Click(object sender, EventArgs e)
         {
-            #region //======= Email Adress TextBox =======//
+            #region //======= Email TextBox =======//
             if (string.IsNullOrEmpty(emailRegister.Text))
             {
                 emailRegister.BackColor = Color.FromArgb(192, 0, 0);
@@ -92,9 +92,8 @@ namespace DataBaseProject1
             }
             #endregion
 
-            // //======= Password TextBox =======//
-            #region
 
+            #region //======= Password TextBox =======//
             if (passwordRegister.Text.Length < 8)
             {
                 passwordRegister.BackColor = Color.FromArgb(192, 0, 0);
@@ -147,8 +146,8 @@ namespace DataBaseProject1
             }
             #endregion
 
-            // //======= Phone Number TextBox =======//
-            #region 
+
+            #region //======= Phone Number TextBox =======//
             PhoneNumberAccepted = DataValidation.IsDigitsOnly(phoneRegister.Text);
 
             if (!PhoneNumberAccepted)

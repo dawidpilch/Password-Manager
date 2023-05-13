@@ -27,7 +27,7 @@ namespace DataBaseProject1
 
             if (!string.IsNullOrEmpty(outsideUsername.Text) && !string.IsNullOrEmpty(outsidePassword.Text))
             {
-                if (await userServices.Login(outsideUsername.Text, outsidePassword.Text))
+                if (await User.Login(outsideUsername.Text, outsidePassword.Text))
                 {
                     passwordInfo.Visible = false;
                     Email = outsideUsername.Text;
