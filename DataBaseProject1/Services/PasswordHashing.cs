@@ -16,12 +16,12 @@ namespace DataBaseProject1.Services
 
         private const string chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ12345678901234567890!#%^&$*-=_+,.?/<>";
 
-        public string CreateSalt(int stringLength)
+        public static string CreateSalt(int stringLength)
         {
             return new string(Enumerable.Repeat(chars, stringLength).Select(s => s[random.Next(s.Length)]).ToArray());
         }
 
-        public async Task<string> HashPassword(string password, byte[] salt, int ittr = 10000)
+        public static async Task<string> HashPassword(string password, byte[] salt, int ittr = 10000)
         {
             using (var rfc2898 = new Rfc2898DeriveBytes(password, salt, ittr))
             {
@@ -30,7 +30,7 @@ namespace DataBaseProject1.Services
             }
         }
 
-        public async Task<bool> ComparePasswords(string outsidePassword, byte[] userSalt, string username)
+        public static async Task<bool> ComparePasswords(string outsidePassword, byte[] userSalt, string username)
         {
             bool result = false;
             string outsidePasswordHash = await HashPassword(outsidePassword, userSalt);

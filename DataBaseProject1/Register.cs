@@ -17,8 +17,6 @@ namespace DataBaseProject1
 {
     public partial class Register : Form
     {
-        User userServices = new User();
-
         private static bool PasswordAccepted;
         private static bool PhoneNumberAccepted;
         private static bool EmailIsValid;
@@ -75,7 +73,7 @@ namespace DataBaseProject1
             //Checking if email is already not taken
             if (EmailIsValid)
             {
-                if (!await userServices.IsEmailAvailable(emailRegister.Text))
+                if (!await User.IsEmailAvailable(emailRegister.Text))
                 {
                     EmailNotTaken = false;
                     emailInfo.Visible = true;
@@ -94,8 +92,8 @@ namespace DataBaseProject1
             }
             #endregion
 
-
-            #region //======= Password TextBox =======//
+            // //======= Password TextBox =======//
+            #region
 
             if (passwordRegister.Text.Length < 8)
             {
@@ -149,8 +147,8 @@ namespace DataBaseProject1
             }
             #endregion
 
-
-            #region //======= Phone Number TextBox =======//
+            // //======= Phone Number TextBox =======//
+            #region 
             PhoneNumberAccepted = DataValidation.IsDigitsOnly(phoneRegister.Text);
 
             if (!PhoneNumberAccepted)
@@ -172,7 +170,7 @@ namespace DataBaseProject1
             //Creating new account
             if (PasswordAccepted && PasswordAccepted && EmailNotTaken && PhoneNumberAccepted)
             {
-                if (await userServices.CreateNewAccount(passwordRegister.Text, emailRegister.Text, phoneRegister.Text)){
+                if (await User.CreateNewAccount(passwordRegister.Text, emailRegister.Text, phoneRegister.Text)){
                     MessageBox.Show("Registered Successfully!");
                 }
             }

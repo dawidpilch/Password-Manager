@@ -12,10 +12,8 @@ namespace DataBaseProject1.Services
 {
     internal class User
     {
-        PasswordHashing passwordHashing = new PasswordHashing();
-
         //Logging In to the app
-        public async Task<bool> Login(string email, string password)
+        public static async Task<bool> Login(string email, string password)
         {
             bool loginSuccessful = false;
                         
@@ -40,7 +38,7 @@ namespace DataBaseProject1.Services
 
                     byte[] getUserSaltResultBytes = Encoding.ASCII.GetBytes(getUserSaltResult);
 
-                    if (await passwordHashing.ComparePasswords(password, getUserSaltResultBytes, email))
+                    if (await PasswordHashing.ComparePasswords(password, getUserSaltResultBytes, email))
                     {
                         loginSuccessful = true;
                     }
@@ -58,7 +56,7 @@ namespace DataBaseProject1.Services
         }
 
         //Checking if the provided email exists in database
-        public async Task<bool> DoesUserExist(string email)
+        public static async Task<bool> DoesUserExist(string email)
         {
             bool result = false;
 
@@ -108,7 +106,7 @@ namespace DataBaseProject1.Services
         }
 
         //Registration - Creating a new account
-        public async Task<bool> CreateNewAccount(string password, string email, string phoneNumber)
+        public static async Task<bool> CreateNewAccount(string password, string email, string phoneNumber)
         {
             bool registerSuccessful = false;
 
@@ -124,11 +122,11 @@ namespace DataBaseProject1.Services
             {
                 SqlCommand command = new SqlCommand(SqlQuery, connection);
 
-                string passwordSalt = passwordHashing.CreateSalt(8);
+                string passwordSalt = PasswordHashing.CreateSalt(8);
                 byte[] passwordSaltByte = Encoding.ASCII.GetBytes(passwordSalt);
 
                 command.Parameters.Add("@EMAIL", System.Data.SqlDbType.NVarChar, 50).Value = email;
-                command.Parameters.Add("@PASSWORD", System.Data.SqlDbType.NVarChar, 200).Value = await passwordHashing.HashPassword(password, passwordSaltByte);
+                command.Parameters.Add("@PASSWORD", System.Data.SqlDbType.NVarChar, 200).Value = await PasswordHashing.HashPassword(password, passwordSaltByte);
                 command.Parameters.Add("@PHONENUMBER", System.Data.SqlDbType.NVarChar, 15).Value = phoneNumber;
                 command.Parameters.Add("@DATE", System.Data.SqlDbType.Date).Value = DateTime.UtcNow.ToString("yyyy-MM-dd");
                 command.Parameters.Add("@PASSWORDSALT", System.Data.SqlDbType.NVarChar, 8).Value = passwordSalt;
@@ -156,7 +154,7 @@ namespace DataBaseProject1.Services
         }
 
         //Check if Email is already assigned to Existing Account
-        public async Task<bool> IsEmailAvailable(string email)
+        public static async Task<bool> IsEmailAvailable(string email)
         {
             bool emailAvailable = false;
 
