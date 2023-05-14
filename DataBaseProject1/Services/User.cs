@@ -1,12 +1,10 @@
 ﻿using DataBaseProject1.Data_Base;
 using System;
-using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace DataBaseProject1.Services
 {
@@ -71,7 +69,10 @@ namespace DataBaseProject1.Services
                 try
                 {
                     connection.Open();
+
                     string queryResult = doesExist.ExecuteScalar().ToString();
+
+                    connection.Close();
 
                     if (queryResult == "1")
                     {
@@ -98,7 +99,6 @@ namespace DataBaseProject1.Services
                     Console.WriteLine(ex.Message);
                 }
 
-                connection.Close();
             }
 
             await Task.Delay(5);
@@ -134,7 +134,10 @@ namespace DataBaseProject1.Services
                 try
                 {
                     connection.Open();
+                    
                     string commandResult = command.ExecuteNonQuery().ToString();
+                    
+                    connection.Close();
 
                     if (commandResult != "0")
                     {
@@ -147,7 +150,6 @@ namespace DataBaseProject1.Services
                     Console.WriteLine(ex.Message);
                 }
 
-                connection.Close();
                 
                 return registerSuccessful;
             }
@@ -164,7 +166,7 @@ namespace DataBaseProject1.Services
             {
                 SqlCommand command = new SqlCommand(SqlQuery, connection);
 
-                command.Parameters.Add("@EMAIL", System.Data.SqlDbType.NVarChar, 50).Value = email;
+                command.Parameters.Add("@EMAIL", SqlDbType.NVarChar, 50).Value = email;
 
                 try
                 {
@@ -172,6 +174,8 @@ namespace DataBaseProject1.Services
                     
                     string reader = command.ExecuteScalar().ToString();
 
+                    connection.Close();
+                    
                     if (reader == "0")
                     {
                         emailAvailable = true;
@@ -182,7 +186,6 @@ namespace DataBaseProject1.Services
                 {
                     Console.WriteLine(ex.Message);
                 }
-                connection.Close();
             }
 
             await Task.Delay(5);
@@ -190,8 +193,9 @@ namespace DataBaseProject1.Services
         }
 
         //Get User ID
-        public static async Task<string> GetUserID(string email)
+        public static async Task<int> GetUserID(string email)
         {
+            int userID = 0;
 
             string SqlQuery = "SELECT ID FROM USERS WHERE EMAIL = @EMAIL";
 
@@ -205,9 +209,7 @@ namespace DataBaseProject1.Services
                 {
                     connection.Open();
 
-                    return getUserID.ExecuteScalar().ToString();
-
-                    
+                    return (int)getUserID.ExecuteScalar();
                 }
 
                 catch (Exception ex)
@@ -219,7 +221,7 @@ namespace DataBaseProject1.Services
             }
 
             await Task.Delay(5);
-            return string.Empty;
+            return userID;
         }
     }
 }

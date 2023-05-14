@@ -1,4 +1,6 @@
 ﻿using DataBaseProject1.Data_Base;
+using DataBaseProject1.Models;
+using DataBaseProject1.Services;
 using System;
 using System.Data.SqlClient;
 
@@ -12,7 +14,6 @@ namespace DataBaseProject1.LoggedInChildForms
 
         public int isLoginFavorite = 0;
         public int rePrompt = 0;
-
 
         public NewLogin()
         {
@@ -48,56 +49,30 @@ namespace DataBaseProject1.LoggedInChildForms
 
         private void button2_Click(object sender, EventArgs e)
         {
+            NewLoginModel loginModel = new NewLoginModel();
+            loginModel.userId = LoggedIn.userID;
+            loginModel.name = newLoginName.Text;
+            loginModel.username = newLoginUsername.Text;
+            loginModel.password = newLoginPassword.Text;
+            loginModel.authenticatorKey = newLoginTOTP.Text;
+            loginModel.uri = newLoginURI.Text;
+            loginModel.favorite = isLoginFavorite;
+            loginModel.masterPswdRePrompt = rePrompt;
+            loginModel.notes = newLoginNotes.Text;
+
+            MessageBox.Show(loginModel.notes);
             if (LoggedIn.instance.newFormType.SelectedIndex == 0 || LoggedIn.instance.newFormType.SelectedIndex == -1)
             {
                 if (!string.IsNullOrEmpty(newLoginName.Text))
                 {
-                    using (SqlConnection conn = new SqlConnection(Connections.ConnectionString))
+                    if (CreateNewItem.Login(loginModel).Result)
                     {
-                        //conn.Open();
-                        //SqlCommand newLoginToDatabase = new SqlCommand
-                        //    ("INSERT INTO [DataBaseProject1].[dbo].[USERS_LOGINS] ([USER_ID], [LOGIN_NAME], [LOGIN_USERNAME], [LOGIN_PASSWORD], " +
-                        //    "[LOGIN_AUTHENTICATOR_KEY], [LOGIN_URI], [LOGIN_FAVORITE], [LOGIN_REPROMPT], [LOGIN_NOTES]) VALUES ('" +
+                        MessageBox.Show("New Login Created");
+                    }
 
-                        //    //USER_ID
-                        //    LoggedIn.instance.CurrentUserID + "', '" +
-
-                        //    //LOGIN_NAME
-                        //    secureData.convertQuotes(newLoginName.Text) + "', '" +
-
-                        //    //LOGIN_USERNAME
-                        //    secureData.convertQuotes(newLoginUsername.Text) + "', '" +
-
-                        //    //LOGIN_PASSWORD
-                        //    secureData.convertQuotes(newLoginPassword.Text) + "', '" +
-
-                        //    //LOGIN_AUTHENTICATOR_KEY
-                        //    secureData.convertQuotes(newLoginTOTP.Text) + "', '" +
-
-                        //    //LOGIN_URI
-                        //    secureData.convertQuotes(newLoginURI.Text) + "', '" +
-
-                        //    //LOGIN_FAVORITE
-                        //    @isLoginFavorite + "', '" +
-
-                        //    //LOGIN_REPROMPT
-                        //    @rePrompt + "', '" +
-
-                        //    //LOGIN_NOTES
-                        //    secureData.convertQuotes(newLoginNotes.Text) + "');", conn);
-
-                        //string newLoginToDatabaseResult = newLoginToDatabase.ExecuteNonQuery().ToString();
-                        //conn.Close();
-
-                        //if (newLoginToDatabaseResult != "0")
-                        //{
-                        //    MessageBox.Show("Success!");
-                        //}
-
-                        //else
-                        //{
-                        //    MessageBox.Show("Zjebałeś coś");
-                        //}
+                    else
+                    {
+                        MessageBox.Show("Something's wrong");
                     }
                 }
 

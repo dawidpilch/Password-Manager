@@ -77,6 +77,8 @@
     <Compile Include="LoggedInChildForms\UserDataListed.Designer.cs">
       <DependentUpon>UserDataListed.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\NewLoginModel.cs" />
+    <Compile Include="Services\CreateNewItem.cs" />
     <Compile Include="Services\DataValidation.cs" />
     <Compile Include="Services\PasswordHashing.cs" />
     <Compile Include="Services\User.cs" />

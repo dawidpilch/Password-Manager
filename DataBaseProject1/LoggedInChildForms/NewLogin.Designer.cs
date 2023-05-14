@@ -30,29 +30,29 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.panelLogin1 = new System.Windows.Forms.Panel();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.newLoginName = new System.Windows.Forms.TextBox();
-            this.newLoginUsername = new System.Windows.Forms.TextBox();
-            this.newLoginPassword = new System.Windows.Forms.TextBox();
             this.newLoginTOTP = new System.Windows.Forms.TextBox();
+            this.newLoginPassword = new System.Windows.Forms.TextBox();
+            this.newLoginUsername = new System.Windows.Forms.TextBox();
+            this.newLoginName = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label7 = new System.Windows.Forms.Label();
             this.newLoginURI = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.label8 = new System.Windows.Forms.Label();
             this.newLoginNotes = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.favoriteCheckBox = new System.Windows.Forms.CheckBox();
             this.RePromptCheckBox = new System.Windows.Forms.CheckBox();
+            this.favoriteCheckBox = new System.Windows.Forms.CheckBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.saveButton = new System.Windows.Forms.Button();
+            this.cancelButton = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.panelLogin1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -88,38 +88,34 @@
             this.panelLogin1.Size = new System.Drawing.Size(409, 249);
             this.panelLogin1.TabIndex = 2;
             // 
-            // label3
+            // newLoginTOTP
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Tai Le", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.label3.Location = new System.Drawing.Point(12, 16);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(36, 14);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Name";
+            this.newLoginTOTP.Location = new System.Drawing.Point(15, 212);
+            this.newLoginTOTP.Name = "newLoginTOTP";
+            this.newLoginTOTP.Size = new System.Drawing.Size(379, 20);
+            this.newLoginTOTP.TabIndex = 12;
             // 
-            // label4
+            // newLoginPassword
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Tai Le", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.label4.Location = new System.Drawing.Point(12, 76);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(58, 14);
-            this.label4.TabIndex = 5;
-            this.label4.Text = "Username";
+            this.newLoginPassword.Location = new System.Drawing.Point(15, 153);
+            this.newLoginPassword.Name = "newLoginPassword";
+            this.newLoginPassword.Size = new System.Drawing.Size(379, 20);
+            this.newLoginPassword.TabIndex = 11;
             // 
-            // label5
+            // newLoginUsername
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Tai Le", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.label5.Location = new System.Drawing.Point(12, 136);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(56, 14);
-            this.label5.TabIndex = 6;
-            this.label5.Text = "Password";
+            this.newLoginUsername.Location = new System.Drawing.Point(15, 94);
+            this.newLoginUsername.Name = "newLoginUsername";
+            this.newLoginUsername.Size = new System.Drawing.Size(379, 20);
+            this.newLoginUsername.TabIndex = 10;
+            // 
+            // newLoginName
+            // 
+            this.newLoginName.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.newLoginName.Location = new System.Drawing.Point(15, 34);
+            this.newLoginName.Name = "newLoginName";
+            this.newLoginName.Size = new System.Drawing.Size(379, 20);
+            this.newLoginName.TabIndex = 9;
             // 
             // label6
             // 
@@ -132,34 +128,38 @@
             this.label6.TabIndex = 7;
             this.label6.Text = "Authenticator key (TOTP)";
             // 
-            // newLoginName
+            // label5
             // 
-            this.newLoginName.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.newLoginName.Location = new System.Drawing.Point(15, 34);
-            this.newLoginName.Name = "newLoginName";
-            this.newLoginName.Size = new System.Drawing.Size(379, 20);
-            this.newLoginName.TabIndex = 9;
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Tai Le", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.SystemColors.ControlDark;
+            this.label5.Location = new System.Drawing.Point(12, 136);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(56, 14);
+            this.label5.TabIndex = 6;
+            this.label5.Text = "Password";
             // 
-            // newLoginUsername
+            // label4
             // 
-            this.newLoginUsername.Location = new System.Drawing.Point(15, 94);
-            this.newLoginUsername.Name = "newLoginUsername";
-            this.newLoginUsername.Size = new System.Drawing.Size(379, 20);
-            this.newLoginUsername.TabIndex = 10;
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Tai Le", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.SystemColors.ControlDark;
+            this.label4.Location = new System.Drawing.Point(12, 76);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(58, 14);
+            this.label4.TabIndex = 5;
+            this.label4.Text = "Username";
             // 
-            // newLoginPassword
+            // label3
             // 
-            this.newLoginPassword.Location = new System.Drawing.Point(15, 153);
-            this.newLoginPassword.Name = "newLoginPassword";
-            this.newLoginPassword.Size = new System.Drawing.Size(379, 20);
-            this.newLoginPassword.TabIndex = 11;
-            // 
-            // newLoginTOTP
-            // 
-            this.newLoginTOTP.Location = new System.Drawing.Point(15, 212);
-            this.newLoginTOTP.Name = "newLoginTOTP";
-            this.newLoginTOTP.Size = new System.Drawing.Size(379, 20);
-            this.newLoginTOTP.TabIndex = 12;
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Tai Le", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.SystemColors.ControlDark;
+            this.label3.Location = new System.Drawing.Point(12, 16);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(36, 14);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "Name";
             // 
             // panel1
             // 
@@ -172,6 +172,13 @@
             this.panel1.Size = new System.Drawing.Size(409, 71);
             this.panel1.TabIndex = 3;
             // 
+            // newLoginURI
+            // 
+            this.newLoginURI.Location = new System.Drawing.Point(15, 31);
+            this.newLoginURI.Name = "newLoginURI";
+            this.newLoginURI.Size = new System.Drawing.Size(379, 20);
+            this.newLoginURI.TabIndex = 11;
+            // 
             // label7
             // 
             this.label7.AutoSize = true;
@@ -182,13 +189,6 @@
             this.label7.Size = new System.Drawing.Size(25, 14);
             this.label7.TabIndex = 10;
             this.label7.Text = "URI";
-            // 
-            // newLoginURI
-            // 
-            this.newLoginURI.Location = new System.Drawing.Point(15, 31);
-            this.newLoginURI.Name = "newLoginURI";
-            this.newLoginURI.Size = new System.Drawing.Size(379, 20);
-            this.newLoginURI.TabIndex = 11;
             // 
             // panel2
             // 
@@ -201,6 +201,14 @@
             this.panel2.Size = new System.Drawing.Size(409, 151);
             this.panel2.TabIndex = 12;
             // 
+            // newLoginNotes
+            // 
+            this.newLoginNotes.Location = new System.Drawing.Point(15, 31);
+            this.newLoginNotes.Multiline = true;
+            this.newLoginNotes.Name = "newLoginNotes";
+            this.newLoginNotes.Size = new System.Drawing.Size(379, 100);
+            this.newLoginNotes.TabIndex = 11;
+            // 
             // label8
             // 
             this.label8.AutoSize = true;
@@ -211,14 +219,6 @@
             this.label8.Size = new System.Drawing.Size(37, 14);
             this.label8.TabIndex = 10;
             this.label8.Text = "Notes";
-            // 
-            // newLoginNotes
-            // 
-            this.newLoginNotes.Location = new System.Drawing.Point(15, 31);
-            this.newLoginNotes.Multiline = true;
-            this.newLoginNotes.Name = "newLoginNotes";
-            this.newLoginNotes.Size = new System.Drawing.Size(379, 100);
-            this.newLoginNotes.TabIndex = 11;
             // 
             // panel4
             // 
@@ -233,27 +233,17 @@
             this.panel4.Size = new System.Drawing.Size(409, 88);
             this.panel4.TabIndex = 12;
             // 
-            // label9
+            // RePromptCheckBox
             // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Tai Le", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.label9.Location = new System.Drawing.Point(12, 16);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(48, 14);
-            this.label9.TabIndex = 10;
-            this.label9.Text = "Favorite";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Microsoft Tai Le", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.label10.Location = new System.Drawing.Point(12, 56);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(150, 14);
-            this.label10.TabIndex = 12;
-            this.label10.Text = "Master password re-prompt";
+            this.RePromptCheckBox.AutoSize = true;
+            this.RePromptCheckBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.RePromptCheckBox.ForeColor = System.Drawing.SystemColors.AppWorkspace;
+            this.RePromptCheckBox.Location = new System.Drawing.Point(382, 56);
+            this.RePromptCheckBox.Name = "RePromptCheckBox";
+            this.RePromptCheckBox.Size = new System.Drawing.Size(12, 11);
+            this.RePromptCheckBox.TabIndex = 15;
+            this.RePromptCheckBox.UseVisualStyleBackColor = true;
+            this.RePromptCheckBox.CheckedChanged += new System.EventHandler(this.RePromptCheckBox_CheckedChanged);
             // 
             // favoriteCheckBox
             // 
@@ -267,23 +257,33 @@
             this.favoriteCheckBox.UseVisualStyleBackColor = true;
             this.favoriteCheckBox.CheckedChanged += new System.EventHandler(this.favoriteCheckBox_CheckedChanged);
             // 
-            // RePromptCheckBox
+            // label10
             // 
-            this.RePromptCheckBox.AutoSize = true;
-            this.RePromptCheckBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.RePromptCheckBox.ForeColor = System.Drawing.SystemColors.AppWorkspace;
-            this.RePromptCheckBox.Location = new System.Drawing.Point(382, 56);
-            this.RePromptCheckBox.Name = "RePromptCheckBox";
-            this.RePromptCheckBox.Size = new System.Drawing.Size(12, 11);
-            this.RePromptCheckBox.TabIndex = 15;
-            this.RePromptCheckBox.UseVisualStyleBackColor = true;
-            this.RePromptCheckBox.CheckedChanged += new System.EventHandler(this.RePromptCheckBox_CheckedChanged);
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Tai Le", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.ForeColor = System.Drawing.SystemColors.ControlDark;
+            this.label10.Location = new System.Drawing.Point(12, 56);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(150, 14);
+            this.label10.TabIndex = 12;
+            this.label10.Text = "Master password re-prompt";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Tai Le", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.ForeColor = System.Drawing.SystemColors.ControlDark;
+            this.label9.Location = new System.Drawing.Point(12, 16);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(48, 14);
+            this.label9.TabIndex = 10;
+            this.label9.Text = "Favorite";
             // 
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.panel3.Controls.Add(this.button2);
-            this.panel3.Controls.Add(this.button1);
+            this.panel3.Controls.Add(this.saveButton);
+            this.panel3.Controls.Add(this.cancelButton);
             this.panel3.Controls.Add(this.label2);
             this.panel3.Controls.Add(this.panel4);
             this.panel3.Controls.Add(this.panel2);
@@ -295,6 +295,36 @@
             this.panel3.Size = new System.Drawing.Size(686, 791);
             this.panel3.TabIndex = 3;
             // 
+            // saveButton
+            // 
+            this.saveButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.saveButton.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.saveButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.saveButton.Font = new System.Drawing.Font("Microsoft Tai Le", 14F);
+            this.saveButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.saveButton.Location = new System.Drawing.Point(175, 682);
+            this.saveButton.Name = "saveButton";
+            this.saveButton.Size = new System.Drawing.Size(65, 40);
+            this.saveButton.TabIndex = 26;
+            this.saveButton.Text = "💾";
+            this.saveButton.UseVisualStyleBackColor = true;
+            this.saveButton.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // cancelButton
+            // 
+            this.cancelButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cancelButton.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.cancelButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cancelButton.Font = new System.Drawing.Font("Microsoft Tai Le", 14F);
+            this.cancelButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.cancelButton.Location = new System.Drawing.Point(501, 682);
+            this.cancelButton.Name = "cancelButton";
+            this.cancelButton.Size = new System.Drawing.Size(83, 40);
+            this.cancelButton.TabIndex = 25;
+            this.cancelButton.Text = "Cancel";
+            this.cancelButton.UseVisualStyleBackColor = true;
+            this.cancelButton.Click += new System.EventHandler(this.button1_Click);
+            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -305,36 +335,6 @@
             this.label2.Size = new System.Drawing.Size(127, 16);
             this.label2.TabIndex = 13;
             this.label2.Text = "ITEM INFORMATION";
-            // 
-            // button1
-            // 
-            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button1.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Microsoft Tai Le", 14F);
-            this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.button1.Location = new System.Drawing.Point(501, 682);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(83, 40);
-            this.button1.TabIndex = 25;
-            this.button1.Text = "Cancel";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // button2
-            // 
-            this.button2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button2.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Microsoft Tai Le", 14F);
-            this.button2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.button2.Location = new System.Drawing.Point(175, 682);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(65, 40);
-            this.button2.TabIndex = 26;
-            this.button2.Text = "💾";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // NewLogin
             // 
@@ -385,7 +385,7 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button cancelButton;
+        private System.Windows.Forms.Button saveButton;
     }
 }

@@ -9,13 +9,14 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace DataBaseProject1
 {
     public partial class LoggedIn : Form
     {
         private Button currentButton;
-        public string userID;
+        public static int userID;
         public static LoggedIn instance;
 
         public LoggedIn()
@@ -26,30 +27,22 @@ namespace DataBaseProject1
             newFormHeader.BorderStyle = BorderStyle.None;
             typeLabel.Visible = false;
             newFormType.Visible = false;
-
-
             userID = User.GetUserID(SignIn.Email).Result;
-            MessageBox.Show(userID);
+            MessageBox.Show(userID.ToString());
         }
 
 
-        #region LoginTab
+        #region Activate buttons
         private void loginTab_Click(object sender, EventArgs e)
         {
             OpenItemsListChildForm(sender);
         }
-        #endregion
 
-
-        #region CardTab
         private void cardTab_Click(object sender, EventArgs e)
         {
             ActivateButton(sender);
         }
-        #endregion
 
-
-        #region IdentificationTab
         private void identityTab_Click(object sender, EventArgs e)
         {
             ActivateButton(sender);
@@ -76,20 +69,20 @@ namespace DataBaseProject1
             }
         }
 
-        private Form activeForm;
         private void OpenItemsListChildForm(object btnSender)
         {
             ActivateButton(btnSender);
             using (SqlConnection conn = new SqlConnection(Connections.ConnectionString))
             {
                 conn.Open();
-                SqlCommand loginsCount = new SqlCommand("Select COUNT(*) ID FROM LOGINS WHERE USER_ID = '" + userID + "'", conn);
-                string loginsCountResult = loginsCount.ExecuteScalar().ToString();
+                SqlCommand command = new SqlCommand("Select COUNT(*) ID FROM LOGINS WHERE USER_ID = @USER_ID", conn);
+                command.Parameters.Add("@USER_ID", SqlDbType.NVarChar, 50).Value = userID;
+                string loginsCountResult = command.ExecuteScalar().ToString();
                 conn.Close();
 
                 if (loginsCountResult != "0")
                 {
-                    OpenCreatingNewForm(new LoggedInChildForms.UserDataListed(), panel2);
+                    OpenCreatingNewForm(new UserDataListed(), panel2);
                 }
 
                 else
@@ -99,6 +92,7 @@ namespace DataBaseProject1
             }
         }
 
+        private Form activeForm;
         public void OpenCreatingNewForm(Form childForm, Panel panel)
         {
             if (activeForm != null)
