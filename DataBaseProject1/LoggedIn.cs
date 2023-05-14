@@ -1,13 +1,12 @@
 ﻿using DataBaseProject1.Data_Base;
 using DataBaseProject1.LoggedInChildForms;
+using DataBaseProject1.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -16,7 +15,7 @@ namespace DataBaseProject1
     public partial class LoggedIn : Form
     {
         private Button currentButton;
-        public string CurrentUserID;
+        public string userID;
         public static LoggedIn instance;
 
         public LoggedIn()
@@ -24,19 +23,13 @@ namespace DataBaseProject1
             InitializeComponent();
             instance = this;
             addNewLogin.Visible = true;
-
-            using (SqlConnection conn = new SqlConnection(Connections.ConnectionString))
-            {
-                conn.Open();
-                SqlCommand getUserID = new SqlCommand
-                    ("SELECT ID FROM USERS WHERE EMAIL = '" + SignIn.Email + "' COLLATE SQL_Latin1_General_CP1_CS_AS", conn);
-                CurrentUserID = getUserID.ExecuteScalar().ToString();
-                conn.Close();
-            }
-            MessageBox.Show(CurrentUserID);
             newFormHeader.BorderStyle = BorderStyle.None;
             typeLabel.Visible = false;
             newFormType.Visible = false;
+
+
+            userID = User.GetUserID(SignIn.Email).Result;
+            MessageBox.Show(userID);
         }
 
 
@@ -90,7 +83,7 @@ namespace DataBaseProject1
             using (SqlConnection conn = new SqlConnection(Connections.ConnectionString))
             {
                 conn.Open();
-                SqlCommand loginsCount = new SqlCommand("Select COUNT(*) LOGINS_ID FROM USERS_LOGINS WHERE USER_ID = '" + CurrentUserID + "'", conn);
+                SqlCommand loginsCount = new SqlCommand("Select COUNT(*) ID FROM LOGINS WHERE USER_ID = '" + userID + "'", conn);
                 string loginsCountResult = loginsCount.ExecuteScalar().ToString();
                 conn.Close();
 

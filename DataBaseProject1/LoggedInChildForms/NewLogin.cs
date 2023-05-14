@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DataBaseProject1.Data_Base;
+using System;
 using System.Data.SqlClient;
 
 using System.Windows.Forms;
@@ -51,7 +52,7 @@ namespace DataBaseProject1.LoggedInChildForms
             {
                 if (!string.IsNullOrEmpty(newLoginName.Text))
                 {
-                    using (SqlConnection conn = new SqlConnection(@"Data Source=DESKTOP-JBI31J2;Initial Catalog=DataBaseProject1;Integrated Security=True;"))
+                    using (SqlConnection conn = new SqlConnection(Connections.ConnectionString))
                     {
                         //conn.Open();
                         //SqlCommand newLoginToDatabase = new SqlCommand

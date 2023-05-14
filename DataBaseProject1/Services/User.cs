@@ -164,13 +164,12 @@ namespace DataBaseProject1.Services
             {
                 SqlCommand command = new SqlCommand(SqlQuery, connection);
 
-                command.Parameters.Add("@Email", System.Data.SqlDbType.NVarChar, 50).Value = email;
+                command.Parameters.Add("@EMAIL", System.Data.SqlDbType.NVarChar, 50).Value = email;
 
                 try
                 {
                     connection.Open();
-
-                    //Needs to be reconsidered
+                    
                     string reader = command.ExecuteScalar().ToString();
 
                     if (reader == "0")
@@ -185,8 +184,42 @@ namespace DataBaseProject1.Services
                 }
                 connection.Close();
             }
+
             await Task.Delay(5);
             return emailAvailable;
+        }
+
+        //Get User ID
+        public static async Task<string> GetUserID(string email)
+        {
+
+            string SqlQuery = "SELECT ID FROM USERS WHERE EMAIL = @EMAIL";
+
+            using (SqlConnection connection = new SqlConnection(Connections.ConnectionString))
+            {
+                SqlCommand getUserID = new SqlCommand(SqlQuery, connection);
+
+                getUserID.Parameters.Add("@EMAIL", System.Data.SqlDbType.NVarChar, 50).Value = email;
+
+                try
+                {
+                    connection.Open();
+
+                    return getUserID.ExecuteScalar().ToString();
+
+                    
+                }
+
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+
+                connection.Close();
+            }
+
+            await Task.Delay(5);
+            return string.Empty;
         }
     }
 }

@@ -296,7 +296,7 @@
             this.Padding = new System.Windows.Forms.Padding(2);
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "LoggedIn";
+            this.Text = "Password Manager";
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
