@@ -60,7 +60,6 @@ namespace DataBaseProject1.LoggedInChildForms
             loginModel.masterPswdRePrompt = rePrompt;
             loginModel.notes = newLoginNotes.Text;
 
-            MessageBox.Show(loginModel.notes);
             if (LoggedIn.instance.newFormType.SelectedIndex == 0 || LoggedIn.instance.newFormType.SelectedIndex == -1)
             {
                 if (!string.IsNullOrEmpty(newLoginName.Text))

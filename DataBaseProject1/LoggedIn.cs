@@ -28,7 +28,6 @@ namespace DataBaseProject1
             typeLabel.Visible = false;
             newFormType.Visible = false;
             userID = User.GetUserID(SignIn.Email).Result;
-            MessageBox.Show(userID.ToString());
         }
 
 
