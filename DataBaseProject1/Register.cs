@@ -188,6 +188,7 @@ namespace DataBaseProject1
             passwordRegisterConfirmation.UseSystemPasswordChar = false;
         }
 
+
         private void hidePassword_Click(object sender, EventArgs e)
         {
             showPassword.Visible = true;

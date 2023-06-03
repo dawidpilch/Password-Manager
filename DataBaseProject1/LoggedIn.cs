@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
@@ -30,7 +31,6 @@ namespace DataBaseProject1
             userID = User.GetUserID(SignIn.Email).Result;
         }
 
-
         #region Activate buttons
         private void loginTab_Click(object sender, EventArgs e)
         {
@@ -46,8 +46,7 @@ namespace DataBaseProject1
         {
             ActivateButton(sender);
         }
-        #endregion
-
+        
         private void ActivateButton(object btnSender)
         {
             DisableButton();
@@ -67,8 +66,9 @@ namespace DataBaseProject1
                 }
             }
         }
+        #endregion
 
-        private void OpenItemsListChildForm(object btnSender)
+        private void OpenListOfItems(object btnSender)
         {
             ActivateButton(btnSender);
             using (SqlConnection conn = new SqlConnection(Connections.ConnectionString))
@@ -91,15 +91,23 @@ namespace DataBaseProject1
             }
         }
 
-        private Form activeForm;
         public void OpenCreatingNewForm(Form childForm, Panel panel)
         {
-            if (activeForm != null)
-            {
-                activeForm.Close();
-            }
+            FormsControl.CloseForms();
+            childForm.TopLevel = false;
+            childForm.FormBorderStyle = FormBorderStyle.None;
+            childForm.Dock = DockStyle.Fill;
+            childForm.Location = new Point(15, 15);
+            panel.Controls.Add(childForm);
+            panel.Tag = childForm;
+            childForm.BringToFront();
+            childForm.Show();
+        }
 
-            activeForm = childForm;
+        public void PlusButtonClick(Panel panel)
+        {
+            FormsControl.CloseForms();
+            NewLogin childForm = new NewLogin();
             childForm.TopLevel = false;
             childForm.FormBorderStyle = FormBorderStyle.None;
             childForm.Dock = DockStyle.Fill;
@@ -113,11 +121,11 @@ namespace DataBaseProject1
         //Clicking the Plus Button
         private void addNewLogin_Click(object sender, EventArgs e)
         {
-                OpenCreatingNewForm(new LoggedInChildForms.NewLogin(), panel3);
-                newFormType.SelectedIndex = 0;
-                newFormHeader.BorderStyle = BorderStyle.FixedSingle;
-                typeLabel.Visible = true;
-                newFormType.Visible = true;
+            PlusButtonClick(panel3);
+            newFormType.SelectedIndex = 0;
+            newFormHeader.BorderStyle = BorderStyle.FixedSingle;
+            typeLabel.Visible = true;
+            newFormType.Visible = true;
         }
 
         //Selecting type of new item

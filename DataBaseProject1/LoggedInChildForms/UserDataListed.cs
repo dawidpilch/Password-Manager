@@ -1,4 +1,5 @@
 ﻿using DataBaseProject1.Data_Base;
+using DataBaseProject1.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -33,7 +34,7 @@ namespace DataBaseProject1.LoggedInChildForms
                 SqlDataReader reader = getItems.ExecuteReader();
                 while (reader.Read())
                 {
-                    ListItem(reader.GetString(0), reader.GetString(0), 120, _buttonsLocation);
+                    ListItem(reader.GetString(0), reader.GetString(0), 100, _buttonsLocation);
                     _buttonsLocation += 40;
                 }
 
@@ -53,26 +54,28 @@ namespace DataBaseProject1.LoggedInChildForms
             button.Click += new EventHandler(Button_Click);
         }
 
-
-        private Form activeForm;
-
-        public void DisplayData(Form childForm, Panel panel)
+        public void DisplayLoginData(Panel panel)
         {
-            activeForm = childForm;
+            FormsControl.CloseForms();
+            NewLogin childForm = new NewLogin();
             childForm.TopLevel = false;
             childForm.FormBorderStyle = FormBorderStyle.None;
             childForm.Dock = DockStyle.Fill;
             childForm.Location = new Point(15, 15);
             panel.Controls.Add(childForm);
             panel.Tag = childForm;
+
+            childForm.newLoginName.Text = "wdasd";
+
             childForm.BringToFront();
             childForm.Show();
         }
 
+
         private void Button_Click(object sender, EventArgs e)
         {
-            DisplayData(new LoggedInChildForms.UserDataListed(), LoggedIn.instance.panel2);
-            DisplayData(new LoggedInChildForms.NewLogin(), LoggedIn.instance.panel3);
+            //DisplayData(new LoggedInChildForms.UserDataListed(), LoggedIn.instance.panel2);
+            DisplayLoginData(LoggedIn.instance.panel3);
         }
     }
 }

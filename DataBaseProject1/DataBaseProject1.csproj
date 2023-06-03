@@ -74,6 +74,7 @@
     <Compile Include="Models\NewLoginModel.cs" />
     <Compile Include="Services\CreateNewItem.cs" />
     <Compile Include="Services\DataValidation.cs" />
+    <Compile Include="Services\FormsControl.cs" />
     <Compile Include="Services\PasswordHashing.cs" />
     <Compile Include="Services\User.cs" />
     <Compile Include="SignIn.cs">
