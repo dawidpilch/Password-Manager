@@ -23,7 +23,6 @@ namespace DataBaseProject1.Services
                 string SqlQuery = "INSERT INTO LOGINS (USER_ID, NAME, USERNAME, PASSWORD," +
                     "AUTHENTICATOR_KEY, URI, FAVORITE, MASTER_PSWD_RE_PROMPT, NOTES) VALUES " +
                     "(@USER_ID, @NAME, @USERNAME, @PASSWORD, @AUTHENTICATOR_KEY, @URI, @FAVORITE, @MASTER_PSWD_RE_PROMPT, @NOTES);";
-                conn.Open();
 
                 SqlCommand command = new SqlCommand(SqlQuery, conn);
 
@@ -37,23 +36,32 @@ namespace DataBaseProject1.Services
                 command.Parameters.Add("@MASTER_PSWD_RE_PROMPT", SqlDbType.Bit).Value = loginModel.masterPswdRePrompt;
                 command.Parameters.Add("@NOTES", SqlDbType.NVarChar).Value = loginModel.notes;
 
-
-
-                if (command.ExecuteNonQuery() != 0)
+                try
                 {
-                    isSuccessful = true;
-                    MessageBox.Show("Success!");
+                    conn.Open();
+
+                    if (command.ExecuteNonQuery() != 0)
+                    {
+                        isSuccessful = true;
+                        MessageBox.Show("Success!");
+                    }
+
+                    else
+                    {
+                        MessageBox.Show("nie działa");
+                    }
+
+                    conn.Close();
                 }
 
-                else
+                catch (Exception ex)
                 {
-                    MessageBox.Show("nie działa");
+                    Console.WriteLine(ex.Message);
                 }
-
-                conn.Close();
-                await Task.Delay(10);
-                return isSuccessful;
             }
+
+            await Task.Delay(5);
+            return isSuccessful;
         }
     }
 }

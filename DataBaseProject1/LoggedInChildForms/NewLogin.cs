@@ -47,7 +47,7 @@ namespace DataBaseProject1.LoggedInChildForms
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private async void button2_Click(object sender, EventArgs e)
         {
             NewLoginModel loginModel = new NewLoginModel();
             loginModel.userId = LoggedIn.userID;
@@ -64,7 +64,7 @@ namespace DataBaseProject1.LoggedInChildForms
             {
                 if (!string.IsNullOrEmpty(newLoginName.Text))
                 {
-                    if (CreateNewItem.Login(loginModel).Result)
+                    if (await CreateNewItem.Login(loginModel))
                     {
                         MessageBox.Show("New Login Created");
                     }

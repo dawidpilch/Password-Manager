@@ -53,6 +53,7 @@ namespace DataBaseProject1.Services
             return loginSuccessful;
         }
 
+
         //Checking if the provided email exists in database
         public static async Task<bool> DoesUserExist(string email)
         {
@@ -105,6 +106,7 @@ namespace DataBaseProject1.Services
             return result; 
         }
 
+
         //Registration - Creating a new account
         public static async Task<bool> CreateNewAccount(string password, string email, string phoneNumber)
         {
@@ -155,6 +157,7 @@ namespace DataBaseProject1.Services
             }
         }
 
+
         //Check if Email is already assigned to Existing Account
         public static async Task<bool> IsEmailAvailable(string email)
         {
@@ -191,6 +194,7 @@ namespace DataBaseProject1.Services
             await Task.Delay(5);
             return emailAvailable;
         }
+
 
         //Get User ID
         public static async Task<int> GetUserID(string email)
