@@ -1,6 +1,7 @@
 ﻿using DataBaseProject1.LoggedInChildForms;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,6 +32,28 @@ namespace DataBaseProject1.Services
             {
                 newId.Close();
             }
+        }
+
+        //Open UserDataListed Form
+        public static void OpenUserDataListed()
+        {
+            var dataListedForm = Application.OpenForms.OfType<UserDataListed>().FirstOrDefault();
+
+            if (dataListedForm != null)
+            {
+                dataListedForm.Close();
+            }
+
+            UserDataListed childForm = new UserDataListed();
+
+            childForm.TopLevel = false;
+            childForm.FormBorderStyle = FormBorderStyle.None;
+            childForm.Dock = DockStyle.Fill;
+            childForm.Location = new Point(15, 15);
+            LoggedIn.instance.panel2.Controls.Add(childForm);
+            LoggedIn.instance.panel2.Tag = childForm;
+            childForm.BringToFront();
+            childForm.Show();
         }
     }
 }

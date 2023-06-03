@@ -34,7 +34,24 @@ namespace DataBaseProject1
         #region Activate buttons
         private void loginTab_Click(object sender, EventArgs e)
         {
-            OpenItemsListChildForm(sender);
+            using (SqlConnection conn = new SqlConnection(Connections.ConnectionString))
+            {
+                conn.Open();
+                SqlCommand command = new SqlCommand("Select COUNT(*) ID FROM LOGINS WHERE USER_ID = @USER_ID", conn);
+                command.Parameters.Add("@USER_ID", SqlDbType.NVarChar, 50).Value = userID;
+                string loginsCountResult = command.ExecuteScalar().ToString();
+                conn.Close();
+
+                if (loginsCountResult != "0")
+                {
+                    FormsControl.OpenUserDataListed();
+                }
+
+                else
+                {
+                    emptyLoginList.Visible = true;
+                }
+            }
         }
 
         private void cardTab_Click(object sender, EventArgs e)
@@ -67,29 +84,6 @@ namespace DataBaseProject1
             }
         }
         #endregion
-
-        private void OpenListOfItems(object btnSender)
-        {
-            ActivateButton(btnSender);
-            using (SqlConnection conn = new SqlConnection(Connections.ConnectionString))
-            {
-                conn.Open();
-                SqlCommand command = new SqlCommand("Select COUNT(*) ID FROM LOGINS WHERE USER_ID = @USER_ID", conn);
-                command.Parameters.Add("@USER_ID", SqlDbType.NVarChar, 50).Value = userID;
-                string loginsCountResult = command.ExecuteScalar().ToString();
-                conn.Close();
-
-                if (loginsCountResult != "0")
-                {
-                    OpenCreatingNewForm(new UserDataListed(), panel2);
-                }
-
-                else
-                {
-                    emptyLoginList.Visible = true;
-                }
-            }
-        }
 
         public void OpenCreatingNewForm(Form childForm, Panel panel)
         {
